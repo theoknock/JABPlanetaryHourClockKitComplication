@@ -64,6 +64,16 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B93BC5BF226E768600BB32B7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -89,7 +99,7 @@
 		B93BC531226E4E7F00BB32B7 /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
 		B93BC532226E4E7F00BB32B7 /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
 		B93BC534226E4E7F00BB32B7 /* ComplicationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplicationController.h; sourceTree = "<group>"; };
-		B93BC535226E4E7F00BB32B7 /* ComplicationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplicationController.m; sourceTree = "<group>"; };
+		B93BC535226E4E7F00BB32B7 /* ComplicationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplicationController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		B93BC537226E4E8000BB32B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B93BC539226E4E8000BB32B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B93BC53A226E4E8000BB32B7 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -120,6 +130,7 @@
 				B93BC51B226E4E7E00BB32B7 /* JABPlanetaryHourClockKitComplication WatchKit App */,
 				B93BC52A226E4E7F00BB32B7 /* JABPlanetaryHourClockKitComplication WatchKit Extension */,
 				B93BC502226E4E7D00BB32B7 /* Products */,
+				B93BC5C0226E769400BB32B7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -177,6 +188,13 @@
 			path = "JABPlanetaryHourClockKitComplication WatchKit Extension";
 			sourceTree = "<group>";
 		};
+		B93BC5C0226E769400BB32B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,6 +206,7 @@
 				B93BC4FE226E4E7D00BB32B7 /* Frameworks */,
 				B93BC4FF226E4E7D00BB32B7 /* Resources */,
 				B93BC544226E4E8000BB32B7 /* Embed Watch Content */,
+				B93BC5BF226E768600BB32B7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
