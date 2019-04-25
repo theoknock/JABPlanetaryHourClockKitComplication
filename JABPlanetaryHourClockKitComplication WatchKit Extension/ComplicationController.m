@@ -273,22 +273,18 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
     [PlanetaryHourDataSource.data solarCyclesForDays:daysIndices
                                    planetaryHourData:dataIndices
                                       planetaryHours:hoursIndices
-                           solarCycleCompletionBlock:^(NSDictionary<NSNumber *,NSDate *> * _Nonnull solarCycle, BOOL * _Nonnull stop) {
-                               
-                           } planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour, BOOL * _Nonnull stop) {
+                           solarCycleCompletionBlock:nil
+                        planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
                                NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHour objectForKey:@(StartDate)] endDate:[planetaryHour objectForKey:@(EndDate)]];
                                if ([dateInterval containsDate:[NSDate date]])
                                {
                                    template = templateForComplication(complication.family, planetaryHour);
                                    CLKComplicationTimelineEntry *tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template] ;
                                    handler(tle);
-                                   *stop = TRUE;
                                }
-                           } planetaryHoursCompletionBlock:^(NSArray<NSDictionary<NSNumber *,NSDate *> *> * _Nonnull planetaryHours, BOOL * _Nonnull stop) {
-                               
-                           } planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
-                               handler(nil);
-                           }];
+                           }
+                       planetaryHoursCompletionBlock:nil
+              planetaryHourDataSourceCompletionBlock:nil];
 }
 
 - (void)getTimelineEntriesForComplication:(CLKComplication *)complication beforeDate:(NSDate *)date limit:(NSUInteger)limit withHandler:(void(^)(NSArray<CLKComplicationTimelineEntry *> * __nullable entries))handler {
