@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B90A09B0226FBC60008381F0 /* JABPlanetaryHourWatchFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90A09A9226FBC14008381F0 /* JABPlanetaryHourWatchFramework.framework */; };
 		B93BC506226E4E7D00BB32B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B93BC505226E4E7D00BB32B7 /* AppDelegate.m */; };
 		B93BC509226E4E7D00BB32B7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93BC508226E4E7D00BB32B7 /* ViewController.m */; };
 		B93BC50C226E4E7D00BB32B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B93BC50A226E4E7D00BB32B7 /* Main.storyboard */; };
@@ -23,37 +22,12 @@
 		B93BC533226E4E7F00BB32B7 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93BC532226E4E7F00BB32B7 /* NotificationController.m */; };
 		B93BC536226E4E7F00BB32B7 /* ComplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93BC535226E4E7F00BB32B7 /* ComplicationController.m */; };
 		B93BC538226E4E8000BB32B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B93BC537226E4E8000BB32B7 /* Assets.xcassets */; };
+		B942B271227F8B7100A4ADF6 /* JABPlanetaryHourWatchFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B942B270227F8B7100A4ADF6 /* JABPlanetaryHourWatchFramework.framework */; };
+		B942B273227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B942B272227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework */; };
+		B942B274227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B942B272227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B90A09A8226FBC14008381F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B90A09A4226FBC13008381F0 /* JABPlanetaryHourWatchFramework.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B93BC4D2226E483000BB32B7;
-			remoteInfo = JABPlanetaryHourWatchFramework;
-		};
-		B90A09AA226FBC2F008381F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B90A09A4226FBC13008381F0 /* JABPlanetaryHourWatchFramework.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B93BC4D1226E483000BB32B7;
-			remoteInfo = JABPlanetaryHourWatchFramework;
-		};
-		B90A09AC226FBC3E008381F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B90A09A4226FBC13008381F0 /* JABPlanetaryHourWatchFramework.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B93BC4D1226E483000BB32B7;
-			remoteInfo = JABPlanetaryHourWatchFramework;
-		};
-		B90A09AE226FBC46008381F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B90A09A4226FBC13008381F0 /* JABPlanetaryHourWatchFramework.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B93BC4D1226E483000BB32B7;
-			remoteInfo = JABPlanetaryHourWatchFramework;
-		};
 		B93BC519226E4E7E00BB32B7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B93BC4F9226E4E7D00BB32B7 /* Project object */;
@@ -103,11 +77,20 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B942B269227F6D1D00A4ADF6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B942B274227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B90A09A2226FBB98008381F0 /* JABPlanetaryHourWatchFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JABPlanetaryHourWatchFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B90A09A4226FBC13008381F0 /* JABPlanetaryHourWatchFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JABPlanetaryHourWatchFramework.xcodeproj; path = ../../JABPlanetaryHourFrameworks/JABPlanetaryHourWatchFramework/JABPlanetaryHourWatchFramework.xcodeproj; sourceTree = "<group>"; };
 		B93BC501226E4E7D00BB32B7 /* JABPlanetaryHourClockKitComplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JABPlanetaryHourClockKitComplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93BC504226E4E7D00BB32B7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B93BC505226E4E7D00BB32B7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -134,6 +117,8 @@
 		B93BC537226E4E8000BB32B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B93BC539226E4E8000BB32B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B93BC53A226E4E8000BB32B7 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		B942B270227F8B7100A4ADF6 /* JABPlanetaryHourWatchFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JABPlanetaryHourWatchFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B942B272227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JABPlanetaryHourWatchFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,25 +133,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B90A09B0226FBC60008381F0 /* JABPlanetaryHourWatchFramework.framework in Frameworks */,
+				B942B273227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework in Frameworks */,
+				B942B271227F8B7100A4ADF6 /* JABPlanetaryHourWatchFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B90A09A5226FBC13008381F0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B90A09A9226FBC14008381F0 /* JABPlanetaryHourWatchFramework.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B93BC4F8226E4E7D00BB32B7 = {
 			isa = PBXGroup;
 			children = (
-				B90A09A4226FBC13008381F0 /* JABPlanetaryHourWatchFramework.xcodeproj */,
+				B942B272227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework */,
 				B93BC503226E4E7D00BB32B7 /* JABPlanetaryHourClockKitComplication */,
 				B93BC51B226E4E7E00BB32B7 /* JABPlanetaryHourClockKitComplication WatchKit App */,
 				B93BC52A226E4E7F00BB32B7 /* JABPlanetaryHourClockKitComplication WatchKit Extension */,
@@ -232,7 +210,7 @@
 		B93BC5C0226E769400BB32B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B90A09A2226FBB98008381F0 /* JABPlanetaryHourWatchFramework.framework */,
+				B942B270227F8B7100A4ADF6 /* JABPlanetaryHourWatchFramework.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -253,7 +231,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				B90A09AB226FBC2F008381F0 /* PBXTargetDependency */,
 				B93BC51A226E4E7E00BB32B7 /* PBXTargetDependency */,
 			);
 			name = JABPlanetaryHourClockKitComplication;
@@ -271,7 +248,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				B90A09AF226FBC46008381F0 /* PBXTargetDependency */,
 				B93BC529226E4E7F00BB32B7 /* PBXTargetDependency */,
 			);
 			name = "JABPlanetaryHourClockKitComplication WatchKit App";
@@ -286,11 +262,11 @@
 				B93BC522226E4E7F00BB32B7 /* Sources */,
 				B93BC523226E4E7F00BB32B7 /* Frameworks */,
 				B93BC524226E4E7F00BB32B7 /* Resources */,
+				B942B269227F6D1D00A4ADF6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B90A09AD226FBC3E008381F0 /* PBXTargetDependency */,
 			);
 			name = "JABPlanetaryHourClockKitComplication WatchKit Extension";
 			productName = "JABPlanetaryHourClockKitComplication WatchKit Extension";
@@ -328,12 +304,6 @@
 			mainGroup = B93BC4F8226E4E7D00BB32B7;
 			productRefGroup = B93BC502226E4E7D00BB32B7 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = B90A09A5226FBC13008381F0 /* Products */;
-					ProjectRef = B90A09A4226FBC13008381F0 /* JABPlanetaryHourWatchFramework.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				B93BC500226E4E7D00BB32B7 /* JABPlanetaryHourClockKitComplication */,
@@ -342,16 +312,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		B90A09A9226FBC14008381F0 /* JABPlanetaryHourWatchFramework.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = JABPlanetaryHourWatchFramework.framework;
-			remoteRef = B90A09A8226FBC14008381F0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B93BC4FF226E4E7D00BB32B7 /* Resources */ = {
@@ -408,21 +368,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B90A09AB226FBC2F008381F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JABPlanetaryHourWatchFramework;
-			targetProxy = B90A09AA226FBC2F008381F0 /* PBXContainerItemProxy */;
-		};
-		B90A09AD226FBC3E008381F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JABPlanetaryHourWatchFramework;
-			targetProxy = B90A09AC226FBC3E008381F0 /* PBXContainerItemProxy */;
-		};
-		B90A09AF226FBC46008381F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JABPlanetaryHourWatchFramework;
-			targetProxy = B90A09AE226FBC46008381F0 /* PBXContainerItemProxy */;
-		};
 		B93BC51A226E4E7E00BB32B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B93BC516226E4E7E00BB32B7 /* JABPlanetaryHourClockKitComplication WatchKit App */;
@@ -592,7 +537,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Debug;
 		};
@@ -613,7 +558,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Release;
 		};
@@ -630,7 +575,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Debug;
 		};
@@ -647,7 +592,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Release;
 		};
