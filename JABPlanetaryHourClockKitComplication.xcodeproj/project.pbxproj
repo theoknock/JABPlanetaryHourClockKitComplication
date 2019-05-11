@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -193,8 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				B93BC52B226E4E7F00BB32B7 /* InterfaceController.h */,
-				B93BC52C226E4E7F00BB32B7 /* InterfaceController.m */,
 				B93BC52E226E4E7F00BB32B7 /* ExtensionDelegate.h */,
+				B93BC52C226E4E7F00BB32B7 /* InterfaceController.m */,
 				B93BC52F226E4E7F00BB32B7 /* ExtensionDelegate.m */,
 				B93BC531226E4E7F00BB32B7 /* NotificationController.h */,
 				B93BC532226E4E7F00BB32B7 /* NotificationController.m */,
@@ -294,7 +294,7 @@
 				};
 			};
 			buildConfigurationList = B93BC4FC226E4E7D00BB32B7 /* Build configuration list for PBXProject "JABPlanetaryHourClockKitComplication" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -537,7 +537,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+				WATCHOS_DEPLOYMENT_TARGET = 5.2;
 			};
 			name = Debug;
 		};
@@ -558,7 +558,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+				WATCHOS_DEPLOYMENT_TARGET = 5.2;
 			};
 			name = Release;
 		};
