@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMedia/CoreMedia.h>
+#import <WatchConnectivity/WatchConnectivity.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <WCSessionDelegate>
 
+@property (strong, nonatomic) WCSession *session;
+@property (weak, nonatomic) IBOutlet UITextView *logTextView;
 
 @end
 

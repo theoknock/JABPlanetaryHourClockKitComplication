@@ -7,7 +7,20 @@
 //
 
 #import <WatchKit/WatchKit.h>
+#import <WatchConnectivity/WatchConnectivity.h>
 
-@interface ExtensionDelegate : NSObject <WKExtensionDelegate>
+typedef NS_ENUM(NSUInteger, LogEntryType) {
+    Error,
+    Success,
+    Operation, // a function
+    Event      // a result
+};
+
+@interface ExtensionDelegate : NSObject <WKExtensionDelegate, WCSessionDelegate>
+
+@property (strong, nonatomic) WCSession *session;
+
+- (void)log:(NSString *)context entry:(NSString *)entry status:(LogEntryType)type;
+- (void)reloadComplicationTimeline;
 
 @end

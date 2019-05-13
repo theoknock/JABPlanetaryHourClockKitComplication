@@ -8,6 +8,9 @@
 
 #import <ClockKit/ClockKit.h>
 
+#import "ExtensionDelegate.h"
+#define ExtensionDelegate ((ExtensionDelegate *)[[WKExtension sharedExtension] delegate])
+
 @interface ComplicationController : NSObject <CLKComplicationDataSource>
 
 @end

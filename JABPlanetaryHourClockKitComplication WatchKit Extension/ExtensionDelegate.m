@@ -12,6 +12,26 @@
 
 - (void)applicationDidFinishLaunching {
     // Perform any final initialization of your application.
+    self.session = [WCSession defaultSession];
+    [self.session setDelegate:(id<WCSessionDelegate> _Nullable)self];
+    [self.session activateSession];
+    [self log:@"WatchKit session (WatchKit extension)" entry:@"Activating WatchKit session" status:Operation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadComplicationTimeline) name:CLKComplicationServerActiveComplicationsDidChangeNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadComplicationTimeline) name:@"PlanetaryHoursDataSourceUpdatedNotification" object:nil];
+}
+
+- (void)log:(NSString *)context entry:(NSString *)entry status:(LogEntryType)type
+{
+    if (self.session.reachable)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.session sendMessage:@{@"context" : context, @"entry" : entry, @"type" : @(type)} replyHandler:^(NSDictionary<NSString *,id> * _Nonnull replyMessage) {
+                NSLog(@"%@", [replyMessage objectForKey:@"reply"]);
+            } errorHandler:^(NSError * _Nonnull error) {
+                NSLog(@"Error sending message: %@", error.description);
+            }];
+        });
+    }
 }
 
 - (void)applicationDidBecomeActive {
@@ -58,4 +78,21 @@
     }
 }
 
+- (void)session:(nonnull WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
+    if (!error)
+        [self log:@"WatchKit session (WatchKit extension)" entry:[NSString stringWithFormat:@"Session activated (State: %d)", activationState] status:Event];
+    else
+        [self log:@"WatchKit session (WatchKit extension)" entry:[NSString stringWithFormat:@"Session activation error: %@", error.description] status:Error];
+}
+
+- (void)reloadComplicationTimeline
+{
+        [self log:@"ClockKit Complication Server" entry:@"Reloading complication timeline..." status:Operation];
+        [[[CLKComplicationServer sharedInstance] activeComplications] enumerateObjectsUsingBlock:^(CLKComplication * _Nonnull complication, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self log:@"ClockKit Complication Server" entry:[NSString stringWithFormat:@"Reloaded timeline for complication: %@", complication.description] status:Operation];
+            [[CLKComplicationServer sharedInstance] reloadTimelineForComplication:complication];
+        }];
+}
+
 @end
+
