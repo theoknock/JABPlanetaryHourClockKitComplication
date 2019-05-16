@@ -25,6 +25,9 @@
 		B942B271227F8B7100A4ADF6 /* JABPlanetaryHourWatchFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B942B270227F8B7100A4ADF6 /* JABPlanetaryHourWatchFramework.framework */; };
 		B942B273227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B942B272227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework */; };
 		B942B274227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B942B272227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B9BB49CA228B5B0700192B7A /* PlanetaryHoursTableInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BB49C9228B5B0700192B7A /* PlanetaryHoursTableInterfaceController.m */; };
+		B9BB49CD228B5D3200192B7A /* PlanetaryHourRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BB49CC228B5D3200192B7A /* PlanetaryHourRowController.m */; };
+		B9BB49D0228D1C1C00192B7A /* MapInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BB49CF228D1C1C00192B7A /* MapInterfaceController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,12 @@
 		B93BC53A226E4E8000BB32B7 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		B942B270227F8B7100A4ADF6 /* JABPlanetaryHourWatchFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JABPlanetaryHourWatchFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B942B272227F8BD700A4ADF6 /* JABPlanetaryHourWatchFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JABPlanetaryHourWatchFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9BB49C8228B5B0700192B7A /* PlanetaryHoursTableInterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanetaryHoursTableInterfaceController.h; sourceTree = "<group>"; };
+		B9BB49C9228B5B0700192B7A /* PlanetaryHoursTableInterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanetaryHoursTableInterfaceController.m; sourceTree = "<group>"; wrapsLines = 0; };
+		B9BB49CB228B5D3200192B7A /* PlanetaryHourRowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanetaryHourRowController.h; sourceTree = "<group>"; };
+		B9BB49CC228B5D3200192B7A /* PlanetaryHourRowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanetaryHourRowController.m; sourceTree = "<group>"; };
+		B9BB49CE228D1C1C00192B7A /* MapInterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapInterfaceController.h; sourceTree = "<group>"; };
+		B9BB49CF228D1C1C00192B7A /* MapInterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapInterfaceController.m; sourceTree = "<group>"; wrapsLines = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +203,12 @@
 			children = (
 				B93BC52B226E4E7F00BB32B7 /* InterfaceController.h */,
 				B93BC52C226E4E7F00BB32B7 /* InterfaceController.m */,
+				B9BB49CE228D1C1C00192B7A /* MapInterfaceController.h */,
+				B9BB49CF228D1C1C00192B7A /* MapInterfaceController.m */,
+				B9BB49C8228B5B0700192B7A /* PlanetaryHoursTableInterfaceController.h */,
+				B9BB49C9228B5B0700192B7A /* PlanetaryHoursTableInterfaceController.m */,
+				B9BB49CB228B5D3200192B7A /* PlanetaryHourRowController.h */,
+				B9BB49CC228B5D3200192B7A /* PlanetaryHourRowController.m */,
 				B93BC52E226E4E7F00BB32B7 /* ExtensionDelegate.h */,
 				B93BC52F226E4E7F00BB32B7 /* ExtensionDelegate.m */,
 				B93BC531226E4E7F00BB32B7 /* NotificationController.h */,
@@ -360,8 +375,11 @@
 			files = (
 				B93BC530226E4E7F00BB32B7 /* ExtensionDelegate.m in Sources */,
 				B93BC536226E4E7F00BB32B7 /* ComplicationController.m in Sources */,
+				B9BB49CA228B5B0700192B7A /* PlanetaryHoursTableInterfaceController.m in Sources */,
 				B93BC52D226E4E7F00BB32B7 /* InterfaceController.m in Sources */,
 				B93BC533226E4E7F00BB32B7 /* NotificationController.m in Sources */,
+				B9BB49D0228D1C1C00192B7A /* MapInterfaceController.m in Sources */,
+				B9BB49CD228B5D3200192B7A /* PlanetaryHourRowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

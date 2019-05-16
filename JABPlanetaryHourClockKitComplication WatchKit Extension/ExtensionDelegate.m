@@ -16,8 +16,11 @@
     [self.session setDelegate:(id<WCSessionDelegate> _Nullable)self];
     [self.session activateSession];
     [self log:@"WatchKit session (WatchKit extension)" entry:@"Activating WatchKit session" status:Operation];
+    
+    [PlanetaryHourDataSource.data setPlanetaryHourDataSourceDelegate:(id<PlanetaryHourDataSourceLogDelegate> _Nullable)self];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadComplicationTimeline) name:CLKComplicationServerActiveComplicationsDidChangeNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadComplicationTimeline) name:@"PlanetaryHoursDataSourceUpdatedNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadComplicationTimeline) name:@"PlanetaryHoursDataSourceUpdatedNotification" object:nil];
 }
 
 - (void)log:(NSString *)context entry:(NSString *)entry status:(LogEntryType)type

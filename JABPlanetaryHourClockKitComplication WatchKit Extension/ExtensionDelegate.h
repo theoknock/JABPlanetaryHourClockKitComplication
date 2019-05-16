@@ -8,15 +8,9 @@
 
 #import <WatchKit/WatchKit.h>
 #import <WatchConnectivity/WatchConnectivity.h>
+#import <JABPlanetaryHourWatchFramework/JABPlanetaryHourWatchFramework.h>
 
-typedef NS_ENUM(NSUInteger, LogEntryType) {
-    Error,
-    Success,
-    Operation, // a function
-    Event      // a result
-};
-
-@interface ExtensionDelegate : NSObject <WKExtensionDelegate, WCSessionDelegate>
+@interface ExtensionDelegate : NSObject <WKExtensionDelegate, WCSessionDelegate, PlanetaryHourDataSourceLogDelegate>
 
 @property (strong, nonatomic) WCSession *session;
 
