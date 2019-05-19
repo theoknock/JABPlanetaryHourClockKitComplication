@@ -8,11 +8,11 @@
 
 #import "ViewController.h"
 
-typedef NS_ENUM(NSUInteger, LogTextAttributes) {
-    LogTextAttributes_Error,
-    LogTextAttributes_Success,
-    LogTextAttributes_Operation,
-    LogTextAttributes_Event
+typedef NS_ENUM(NSUInteger, LogEntryType) {
+    LogEntryTypeError,
+    LogEntryTypeSuccess,
+    LogEntryTypeOperation, // a function
+    LogEntryTypeEvent      // a result
 };
 
 @interface ViewController ()
@@ -32,58 +32,60 @@ typedef NS_ENUM(NSUInteger, LogTextAttributes) {
     
     loggerQueue = dispatch_queue_create_with_target("Logger queue", DISPATCH_QUEUE_SERIAL, dispatch_get_main_queue());
     taskQueue = dispatch_queue_create_with_target("Task queue", DISPATCH_QUEUE_SERIAL, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
-
+    [self textStyles];
     self.session = [WCSession defaultSession];
     [self.session setDelegate:(id<WCSessionDelegate> _Nullable)self];
     [self.session activateSession];
     
-    [self log:@"WatchKit session" entry:@"Activating WatchKit session..." time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogTextAttributes_Operation];
+    [self log:@"WatchKit session" entry:@"Activating WatchKit session..." time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeOperation];
 }
 
 - (void)session:(WCSession *)session didReceiveMessage:(NSDictionary<NSString *,id> *)message replyHandler:(void (^)(NSDictionary<NSString *,id> * _Nonnull))replyHandler
 {
-    LogTextAttributes textAttributes = (LogTextAttributes)[(NSNumber *)[message objectForKey:@"event"] unsignedIntegerValue];
+    LogEntryType textAttributes = (LogEntryType)[(NSNumber *)[message objectForKey:@"event"] unsignedIntegerValue];
       
     [self log:[NSString stringWithFormat:@"%@", [message objectForKey:@"context"]] entry:[NSString stringWithFormat:@"%@", [message objectForKey:@"entry"]] time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:textAttributes];
 }
 
 - (void)session:(nonnull WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
-    [self log:@"WatchKit session" entry:[NSString stringWithFormat:@"WatckKit activation completed (State: %@)", (activationState == 2) ? @"WCSessionActivationStateActivated" : ((activationState == 0) ? @"WCSessionActivationStateNotActivated" : @"WCSessionActivationStateInactive")] time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogTextAttributes_Event];
+    [self log:@"WatchKit session" entry:[NSString stringWithFormat:@"WatckKit session activation completed (State: %@)", (activationState == 2) ? @"WCSessionActivationStateActivated" : ((activationState == 0) ? @"WCSessionActivationStateNotActivated" : @"WCSessionActivationStateInactive")] time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeEvent];
     if (error)
-        [self log:@"WatchKit session" entry:[NSString stringWithFormat:@"%@", error.description] time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogTextAttributes_Error];
+        [self log:@"WatchKit session" entry:[NSString stringWithFormat:@"%@", error.description] time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeError];
 }
 
 - (void)sessionDidBecomeInactive:(nonnull WCSession *)session {
-    [self log:@"WatchKit session" entry:@"WatchKit session inactivated" time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogTextAttributes_Event];
+    [self log:@"WatchKit session" entry:@"WatchKit session inactivated" time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeEvent];
 }
 
 - (void)sessionDidDeactivate:(nonnull WCSession *)session {
-    [self log:@"WatchKit session" entry:@"WatchKit session deactivated" time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogTextAttributes_Event];
+    [self log:@"WatchKit session" entry:@"WatchKit session deactivated" time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeEvent];
 }
 
 - (void)textStyles
 {
     NSMutableParagraphStyle *leftAlignedParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     leftAlignedParagraphStyle.alignment = NSTextAlignmentLeft;
-    _operationTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:0.87 green:0.5 blue:0.0 alpha:1.0],
-                                 NSFontAttributeName: [UIFont systemFontOfSize:11.0 weight:UIFontWeightMedium]};
+    _operationTextAttributes = @{NSForegroundColorAttributeName: [UIColor orangeColor], // [UIColor colorWithRed:0.87 green:0.5 blue:0.0 alpha:1.0],
+                                 NSFontAttributeName: [UIFont systemFontOfSize:11.0 weight:UIFontWeightMedium],
+                                 NSParagraphStyleAttributeName: leftAlignedParagraphStyle};
     
     NSMutableParagraphStyle *fullJustificationParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     fullJustificationParagraphStyle.alignment = NSTextAlignmentJustified;
-    _errorTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:0.91 green:0.28 blue:0.5 alpha:1.0],
-                             NSFontAttributeName: [UIFont systemFontOfSize:11.0 weight:UIFontWeightMedium]};
+    _errorTextAttributes = @{NSForegroundColorAttributeName: [UIColor redColor], // [UIColor colorWithRed:0.91 green:0.28 blue:0.5 alpha:1.0],
+                             NSFontAttributeName: [UIFont systemFontOfSize:11.0 weight:UIFontWeightMedium],
+                             NSParagraphStyleAttributeName: fullJustificationParagraphStyle};
     
     NSMutableParagraphStyle *rightAlignedParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     rightAlignedParagraphStyle.alignment = NSTextAlignmentRight;
-    _eventTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:0.0 green:0.54 blue:0.87 alpha:1.0],
+    _eventTextAttributes = @{NSForegroundColorAttributeName: [UIColor blueColor], // [UIColor colorWithRed:0.0 green:0.54 blue:0.87 alpha:1.0],
                              NSFontAttributeName: [UIFont systemFontOfSize:11.0 weight:UIFontWeightMedium],
                              NSParagraphStyleAttributeName: rightAlignedParagraphStyle};
     
     NSMutableParagraphStyle *centerAlignedParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     centerAlignedParagraphStyle.alignment = NSTextAlignmentCenter;
-    _successTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:0.0 green:0.87 blue:0.19 alpha:1.0],
+    _successTextAttributes = @{NSForegroundColorAttributeName: [UIColor greenColor], // [UIColor colorWithRed:0.0 green:0.87 blue:0.19 alpha:1.0],
                                NSFontAttributeName: [UIFont systemFontOfSize:11.0 weight:UIFontWeightMedium],
-                               NSParagraphStyleAttributeName: rightAlignedParagraphStyle}; // cnanged to right-aligned
+                               NSParagraphStyleAttributeName: rightAlignedParagraphStyle};
 }
 
 static NSString *stringFromCMTime(CMTime time)
@@ -108,16 +110,16 @@ static NSString *stringFromCMTime(CMTime time)
 {
     NSDictionary *attributes;
     switch (logTextAttributes) {
-        case LogTextAttributes_Event:
+        case LogEntryTypeEvent:
             attributes = _eventTextAttributes;
             break;
-        case LogTextAttributes_Operation:
+        case LogEntryTypeOperation:
             attributes = _operationTextAttributes;
             break;
-        case LogTextAttributes_Success:
+        case LogEntryTypeSuccess:
             attributes = _successTextAttributes;
             break;
-        case LogTextAttributes_Error:
+        case LogEntryTypeError:
             attributes = _errorTextAttributes;
             break;
         default:
@@ -134,20 +136,6 @@ static NSString *stringFromCMTime(CMTime time)
         [log appendAttributedString:context_s];
         [log appendAttributedString:entry_s];
         [self.logTextView setAttributedText:log];
-        
-        //        CGRect rect = [self.eventLogTextView firstRectForRange:[self.eventLogTextView textRangeFromPosition:self.eventLogTextView.beginningOfDocument toPosition:self.eventLogTextView.endOfDocument]];
-        //        [self displayYHeightForFrameBoundsRect:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height) withLabel:@"First rect for range"];
-        //        CGFloat heightDifference = rect.size.height - self.eventLogTextView.bounds.size.height;
-        //        NSLog(@"heightDifference\t%f", heightDifference);
-        //        CGRect visibleRect = CGRectMake(rect.origin.x, rect.origin.y + heightDifference, rect.size.width, rect.size.height);
-        ////        [self displayYHeightForFrameBoundsRect:CGRectMake(visibleRect.origin.x, visibleRect.origin.y, visibleRect.size.width, visibleRect.size.height) withLabel:@"Visible rect"];
-        //        if (heightDifference > 0)
-        //        {
-        //            CGRect newRect = CGRectMake(0, heightDifference, visibleRect.size.width, self.eventLogTextView.bounds.size.height);
-        //            [self.eventLogTextView scrollRectToVisible:newRect animated:TRUE];
-        ////            NSLog(@"New rect\tx: %f, y: %f, w: %f, h: %f\n\n", newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height);
-        //        }
-        ////        [self displayYHeightForFrameBoundsRect:CGRectMake(self.eventLogTextView.frame.origin.y, self.eventLogTextView.frame.size.height, self.eventLogTextView.bounds.origin.y, self.eventLogTextView.bounds.size.height) withLabel:@"END\n\n"];
     });
 }
 

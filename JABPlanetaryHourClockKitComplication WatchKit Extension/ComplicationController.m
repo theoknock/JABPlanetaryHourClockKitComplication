@@ -22,23 +22,26 @@ CLKComplicationTemplateModularLargeTallBody *(^complicationTemplateModularLargeT
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateModularLargeTallBody *template = [[CLKComplicationTemplateModularLargeTallBody alloc] init];
     template.headerTextProvider = [CLKSimpleTextProvider textProviderWithText:(headerText) ? headerText : @"㊏"];
+    template.headerTextProvider.tintColor = tint;
     template.bodyTextProvider = [CLKSimpleTextProvider textProviderWithText:(bodyText) ? bodyText : @"㊏"];
+    template.bodyTextProvider.tintColor = tint;
     template.tintColor = tint;
     
     return template;
 };
 
-CLKComplicationTemplateModularLargeTable *(^complicationTemplateModularLargeTable)(NSString *, NSString *, NSString *, NSString *, NSString *, UIColor *) = ^(NSString *text, NSString *row1Column1TextProvider, NSString *row1Column2TextProvider, NSString *row2Column1TextProvider, NSString *row2Column2TextProvider, UIColor *color)
+CLKComplicationTemplateModularLargeTable *(^complicationTemplateModularLargeTable)(NSString *, NSString *, NSString *, NSString *, NSString *, UIColor *) = ^(NSString *text, NSString *row1Column1TextProvider, NSString *row1Column2TextProvider, NSString *row2Column1TextProvider, NSString *row2Column2TextProvider, UIColor *tintColor)
 {
-    //printf("%s", __PRETTY_FUNCTION__);
+    printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateModularLargeTable *template = [[CLKComplicationTemplateModularLargeTable alloc] init];
     template.headerTextProvider = [CLKSimpleTextProvider textProviderWithText:(text) ? text : @"㊏"];
+    template.headerTextProvider.tintColor = tintColor;
     template.row1Column1TextProvider = [CLKSimpleTextProvider textProviderWithText:(row1Column1TextProvider) ? row1Column1TextProvider : @"㊏"];
     template.row1Column2TextProvider = [CLKSimpleTextProvider textProviderWithText:(row1Column2TextProvider) ? row1Column2TextProvider : @"㊏"];
     template.row2Column1TextProvider = [CLKSimpleTextProvider textProviderWithText:(row2Column1TextProvider) ? row2Column1TextProvider : @"㊏"];
     template.row2Column2TextProvider = [CLKSimpleTextProvider textProviderWithText:(row2Column2TextProvider) ? row2Column2TextProvider : @"㊏"];
-    template.tintColor = color;
-    //    template.headerImageProvider...
+    template.tintColor = tintColor;
+//    template.headerImageProvider = [CLKImageProvider imageProviderWithOnePieceImage:[PlanetaryHourDataSource.data imageFromText](text, color, 72.0)];
     
     return template;
 };
@@ -48,6 +51,7 @@ CLKComplicationTemplateModularSmallSimpleText *(^complicationTemplateModularSmal
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateModularSmallSimpleText *template = [[CLKComplicationTemplateModularSmallSimpleText alloc] init];
     template.textProvider = [CLKSimpleTextProvider textProviderWithText:(text) ? text : @"㊏"];
+    template.textProvider.tintColor = tint;
     template.tintColor = tint;
     
     return template;
@@ -59,6 +63,7 @@ CLKComplicationTemplateUtilitarianLargeFlat *(^complicationTemplateUtilitarianLa
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateUtilitarianLargeFlat *template = [[CLKComplicationTemplateUtilitarianLargeFlat alloc] init];
     template.textProvider = [CLKSimpleTextProvider textProviderWithText:(text) ? text : @"㊏"];
+    template.textProvider.tintColor = tint;
     template.tintColor = tint;
     
     return template;
@@ -69,6 +74,7 @@ CLKComplicationTemplateUtilitarianSmallFlat *(^complicationTemplateUtilitarianSm
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateUtilitarianSmallFlat *template = [[CLKComplicationTemplateUtilitarianSmallFlat alloc] init];
     template.textProvider = [CLKSimpleTextProvider textProviderWithText:(text) ? text : @"㊏"];
+    template.textProvider.tintColor = tint;
     template.tintColor = tint;
     
     return template;
@@ -79,6 +85,7 @@ CLKComplicationTemplateExtraLargeSimpleText *(^complicationTemplateExtraLargeSim
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateExtraLargeSimpleText *template = [[CLKComplicationTemplateExtraLargeSimpleText alloc] init];
     template.textProvider = [CLKSimpleTextProvider textProviderWithText:(text) ? text : @"㊏"];
+    template.textProvider.tintColor = tint;
     template.tintColor = tint;
     
     return template;
@@ -88,39 +95,42 @@ CLKComplicationTemplateCircularSmallSimpleText *(^complicationTemplateCircularSm
 {
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateCircularSmallSimpleText *template = [[CLKComplicationTemplateCircularSmallSimpleText alloc] init];
-    template.textProvider = [CLKSimpleTextProvider textProviderWithText:(text) ? text : @"㊏"] ;
+    template.textProvider = [CLKSimpleTextProvider textProviderWithText:(text) ? text : @"㊏"];
+    template.textProvider.tintColor = tint;
     template.tintColor = tint;
     
     return template;
 };
 
-CLKComplicationTemplateCircularSmallStackText *(^complicationTemplateCircularSmallStackText)(NSString *, NSString *) = ^(NSString *line1textProvider, NSString *line2TextProvider)
+CLKComplicationTemplateCircularSmallStackText *(^complicationTemplateCircularSmallStackText)(NSString *, NSString *, UIColor *) = ^(NSString *line1text, NSString *line2Text, UIColor *tintColor)
 {
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateCircularSmallStackText *template = [[CLKComplicationTemplateCircularSmallStackText alloc] init];
-    template.line1TextProvider = [CLKSimpleTextProvider textProviderWithText:(line1textProvider) ? line1textProvider : @"㊏"];
-    template.line2TextProvider = [CLKSimpleTextProvider textProviderWithText:(line2TextProvider) ? line2TextProvider : @"㊏"];
+    template.line1TextProvider = [CLKSimpleTextProvider textProviderWithText:(line1text) ? line1text : @"㊏"];
+    template.line1TextProvider.tintColor = tintColor;
+    template.line2TextProvider = [CLKSimpleTextProvider textProviderWithText:(line2Text) ? line2Text : @"Earth"];
     
     return template;
 };
 
-CLKComplicationTemplateExtraLargeRingImage *(^complicationTemplateExtraLargeRingImage)(NSString *, CLKComplicationRingStyle, float, UIColor *) = ^(NSString *text, CLKComplicationRingStyle ringStyle, float fillFraction, UIColor *color)
+CLKComplicationTemplateExtraLargeRingImage *(^complicationTemplateExtraLargeRingImage)(NSString *, CLKComplicationRingStyle, float, UIColor *) = ^(NSString *text, CLKComplicationRingStyle ringStyle, float fillFraction, UIColor *tintColor)
 {
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateExtraLargeRingImage *template = [[CLKComplicationTemplateExtraLargeRingImage alloc] init];
-    template.imageProvider = [CLKImageProvider imageProviderWithOnePieceImage:[PlanetaryHourDataSource.data imageFromText](text, color, 72.0)];
+    template.imageProvider = [CLKImageProvider imageProviderWithOnePieceImage:[PlanetaryHourDataSource.data imageFromText](text, tintColor, 72.0)];
     template.ringStyle = ringStyle;
     template.fillFraction = fillFraction;
-    template.tintColor = color;
+    template.tintColor = tintColor;
     
     return template;
 };
 
-CLKComplicationTemplateModularSmallRingText *(^complicationTemplateModularSmallRingText)(NSString *, CLKComplicationRingStyle, float)  = ^(NSString *text, CLKComplicationRingStyle ringStyle, float fillFraction)
+CLKComplicationTemplateModularSmallRingText *(^complicationTemplateModularSmallRingText)(NSString *, UIColor *, CLKComplicationRingStyle, float)  = ^(NSString *text, UIColor *tintColor, CLKComplicationRingStyle ringStyle, float fillFraction)
 {
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateModularSmallRingText *template = [[CLKComplicationTemplateModularSmallRingText alloc] init];
     template.textProvider = [CLKSimpleTextProvider textProviderWithText:(text) ? text : @"㊏"];
+    template.textProvider.tintColor = tintColor;
     template.ringStyle    = ringStyle;
     template.fillFraction = fillFraction;
     
@@ -131,6 +141,7 @@ CLKComplicationTemplateGraphicCornerGaugeText *(^complicationTemplateGraphicCorn
 {
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateGraphicCornerGaugeText *template = [[CLKComplicationTemplateGraphicCornerGaugeText alloc] init];
+    template.tintColor             = tintColor;
     
     Planet leadingPlanet           = (symbol) ? ([PlanetaryHourDataSource.data planetForPlanetSymbol](symbol) + 1) % NUMBER_OF_PLANETS : (Planet)NAN;
     NSString *leadingPlanetSymbol  = (leadingPlanet != NAN) ? [PlanetaryHourDataSource.data planetSymbolForPlanet](leadingPlanet) : @"㊏";
@@ -141,20 +152,24 @@ CLKComplicationTemplateGraphicCornerGaugeText *(^complicationTemplateGraphicCorn
     UIColor *trailingPlanetColor   = [PlanetaryHourDataSource.data colorForPlanetSymbol]((trailingPlanetSymbol) ? trailingPlanetSymbol : @"㊏");
     
     template.outerTextProvider     = [CLKSimpleTextProvider textProviderWithText:(symbol) ? symbol : @"㊏"];
-    template.tintColor             = tintColor;
+    template.outerTextProvider.tintColor = tintColor;
     template.trailingTextProvider  = [CLKSimpleTextProvider textProviderWithText:(leadingPlanetSymbol) ? leadingPlanetSymbol : @"㊏"];
+    template.trailingTextProvider.tintColor = leadingPlanetColor;
     template.leadingTextProvider   = [CLKSimpleTextProvider textProviderWithText:(trailingPlanetSymbol) ? trailingPlanetSymbol : @"㊏"];
+    template.leadingTextProvider.tintColor = trailingPlanetColor;
+    
     template.gaugeProvider         = [CLKTimeIntervalGaugeProvider gaugeProviderWithStyle:CLKGaugeProviderStyleRing gaugeColors:@[trailingPlanetColor, tintColor, leadingPlanetColor] gaugeColorLocations:@[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:0.5], [NSNumber numberWithFloat:1.0]] startDate:startDate startFillFraction:0.0 endDate:endDate endFillFraction:1.0];
     
     return template;
 };
 
-CLKComplicationTemplateGraphicCircularOpenGaugeImage *(^complicationTemplateGraphicCircularOpenGaugeImage)(NSString *, UIColor *, NSNumber *, NSDate *, NSDate *, NSArray<UIColor *> *, NSArray<NSNumber *> *, CLKGaugeProviderStyle) = ^(NSString *symbol, UIColor *color, NSNumber *hour, NSDate *startDate, NSDate *endDate, NSArray<UIColor *> *gaugeColors, NSArray<NSNumber *> *gaugeColorLocations, CLKGaugeProviderStyle style)
+CLKComplicationTemplateGraphicCircularOpenGaugeImage *(^complicationTemplateGraphicCircularOpenGaugeImage)(NSString *, UIColor *, NSNumber *, NSDate *, NSDate *, NSArray<UIColor *> *, NSArray<NSNumber *> *, CLKGaugeProviderStyle) = ^(NSString *symbol, UIColor *tintColor, NSNumber *hour, NSDate *startDate, NSDate *endDate, NSArray<UIColor *> *gaugeColors, NSArray<NSNumber *> *gaugeColorLocations, CLKGaugeProviderStyle style)
 {
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateGraphicCircularOpenGaugeImage *template = [[CLKComplicationTemplateGraphicCircularOpenGaugeImage alloc] init];
     template.centerTextProvider  = [CLKSimpleTextProvider textProviderWithText:(symbol) ? symbol : @"㊏"];
-    template.bottomImageProvider = [CLKFullColorImageProvider providerWithFullColorImage:[PlanetaryHourDataSource.data imageFromText]([NSString stringWithFormat:@"%ld", hour.longValue], color, 9.0)];
+    template.centerTextProvider.tintColor = tintColor;
+    template.bottomImageProvider = [CLKFullColorImageProvider providerWithFullColorImage:[PlanetaryHourDataSource.data imageFromText]([NSString stringWithFormat:@"%ld", hour.longValue], tintColor, 9.0)];
     template.gaugeProvider       = [CLKTimeIntervalGaugeProvider gaugeProviderWithStyle:style gaugeColors:gaugeColors gaugeColorLocations:gaugeColorLocations startDate:startDate endDate:endDate];
     
     return template;
@@ -164,6 +179,8 @@ CLKComplicationTemplateGraphicCircularOpenGaugeRangeText *(^complicationTemplate
 {
     //printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateGraphicCircularOpenGaugeRangeText *template = [[CLKComplicationTemplateGraphicCircularOpenGaugeRangeText alloc] init];
+    template.tintColor             = tintColor;
+    
     Planet leadingPlanet           = (Planet)([PlanetaryHourDataSource.data planetForPlanetSymbol](symbol) + 1) % NUMBER_OF_PLANETS;
     NSString *leadingPlanetSymbol  = [PlanetaryHourDataSource.data planetSymbolForPlanet](leadingPlanet);
     UIColor *leadingPlanetColor    = [PlanetaryHourDataSource.data colorForPlanetSymbol](leadingPlanetSymbol);
@@ -173,9 +190,12 @@ CLKComplicationTemplateGraphicCircularOpenGaugeRangeText *(^complicationTemplate
     UIColor *trailingPlanetColor   = [PlanetaryHourDataSource.data colorForPlanetSymbol](trailingPlanetSymbol);
     
     template.centerTextProvider    = [CLKSimpleTextProvider textProviderWithText:symbol];
-    template.tintColor             = tintColor;
-    template.trailingTextProvider  = [CLKSimpleTextProvider textProviderWithText:leadingPlanetSymbol];
-    template.leadingTextProvider   = [CLKSimpleTextProvider textProviderWithText:trailingPlanetSymbol];
+    template.centerTextProvider.tintColor = tintColor;
+    template.trailingTextProvider  = [CLKSimpleTextProvider textProviderWithText:(leadingPlanetSymbol) ? leadingPlanetSymbol : @"㊏"];
+    template.trailingTextProvider.tintColor = leadingPlanetColor;
+    template.leadingTextProvider   = [CLKSimpleTextProvider textProviderWithText:(trailingPlanetSymbol) ? trailingPlanetSymbol : @"㊏"];
+    template.leadingTextProvider.tintColor = trailingPlanetColor;
+    
     template.gaugeProvider         = [CLKTimeIntervalGaugeProvider gaugeProviderWithStyle:CLKGaugeProviderStyleRing gaugeColors:@[trailingPlanetColor, tintColor, leadingPlanetColor] gaugeColorLocations:@[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:0.5], [NSNumber numberWithFloat:1.0]] startDate:startDate startFillFraction:0.0 endDate:endDate endFillFraction:1.0];
     
     return template;
@@ -284,7 +304,7 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
                            solarCycleCompletionBlock:nil
                         planetaryHourCompletionBlock:nil
                        planetaryHoursCompletionBlock:^(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull planetaryHours) {
-                           [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Getting current timeline entry for complication: %@", complication.description] status:Operation];
+                           [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Getting current timeline entry for complication: %@", complication.description] status:LogEntryTypeOperation];
                            
                            [planetaryHours enumerateObjectsUsingBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour, NSUInteger idx, BOOL * _Nonnull stop) {
                                NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHour objectForKey:@(StartDate)] endDate:[planetaryHour objectForKey:@(EndDate)]];
@@ -299,9 +319,9 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
                        }
               planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
                   if (error)
-                      [ExtensionDelegate log:@"JABPlanetaryHourWatchFramework" entry:[NSString stringWithFormat:@"Error calculating planetary hours: %@", error] status:Error];
+                      [ExtensionDelegate log:@"JABPlanetaryHourWatchFramework" entry:[NSString stringWithFormat:@"Error calculating planetary hours: %@", error] status:LogEntryTypeError];
                   else
-                      [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Retrieved current timeline entry for complication: %@", complication.description] status:Success];
+                      [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Retrieved current timeline entry for complication: %@", complication.description] status:LogEntryTypeSuccess];
               }];
 }
 
@@ -310,7 +330,7 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
 }
 
 - (void)getTimelineEntriesForComplication:(CLKComplication *)complication afterDate:(NSDate *)date limit:(NSUInteger)limit withHandler:(void(^)(NSArray<CLKComplicationTimelineEntry *> * __nullable entries))handler {
-    [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Requested %d timeline entries for %@", limit, date] status:Event];
+    [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Requested %d timeline entries for %@", limit, date] status:LogEntryTypeEvent];
     __block NSMutableArray<CLKComplicationTimelineEntry *> *planetaryHourTimelineEntries = [[NSMutableArray alloc] initWithCapacity:limit];
     NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, floor(limit / 24))];
     NSMutableIndexSet *dataIndices  = [[NSMutableIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 4)];
@@ -322,16 +342,16 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
                            solarCycleCompletionBlock:nil
                         planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
                             CLKComplicationTemplate *template = templateForComplication(complication.family, planetaryHour);
-                            CLKComplicationTimelineEntry *tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template] ;
+                            CLKComplicationTimelineEntry *tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template];
                             [planetaryHourTimelineEntries addObject:tle];
                         }
                        planetaryHoursCompletionBlock:nil
               planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
                   handler((NSArray<CLKComplicationTimelineEntry *> *)planetaryHourTimelineEntries);
                   if (error)
-                      [ExtensionDelegate log:@"JABPlanetaryHourWatchFramework" entry:[NSString stringWithFormat:@"Error calculating planetary hours: %@", error] status:Error];
+                      [ExtensionDelegate log:@"JABPlanetaryHourWatchFramework" entry:[NSString stringWithFormat:@"Error calculating planetary hours: %@", error] status:LogEntryTypeError];
                   else
-                      [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Retrieved %d timeline entries for complication: %@", planetaryHourTimelineEntries.count, complication.description] status:Success];
+                      [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Retrieved %d timeline entries for complication: %@", planetaryHourTimelineEntries.count, complication.description] status:LogEntryTypeSuccess];
               }];
 }
 

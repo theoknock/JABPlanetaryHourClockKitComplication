@@ -15,7 +15,7 @@
     self.session = [WCSession defaultSession];
     [self.session setDelegate:(id<WCSessionDelegate> _Nullable)self];
     [self.session activateSession];
-    [self log:@"WatchKit session (WatchKit extension)" entry:@"Activating WatchKit session" status:Operation];
+    [self log:@"WatchKit session (WatchKit extension)" entry:@"Activating WatchKit session" status:LogEntryTypeOperation];
     
     [PlanetaryHourDataSource.data setPlanetaryHourDataSourceDelegate:(id<PlanetaryHourDataSourceLogDelegate> _Nullable)self];
     
@@ -83,16 +83,16 @@
 
 - (void)session:(nonnull WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
     if (!error)
-        [self log:@"WatchKit session (WatchKit extension)" entry:[NSString stringWithFormat:@"Session activated (State: %d)", activationState] status:Event];
+        [self log:@"WatchKit session (WatchKit extension)" entry:[NSString stringWithFormat:@"Session activated (State: %d)", activationState] status:LogEntryTypeEvent];
     else
-        [self log:@"WatchKit session (WatchKit extension)" entry:[NSString stringWithFormat:@"Session activation error: %@", error.description] status:Error];
+        [self log:@"WatchKit session (WatchKit extension)" entry:[NSString stringWithFormat:@"Session activation error: %@", error.description] status:LogEntryTypeError];
 }
 
 - (void)reloadComplicationTimeline
 {
-        [self log:@"ClockKit Complication Server" entry:@"Reloading complication timeline..." status:Operation];
+        [self log:@"ClockKit Complication Server" entry:@"Reloading complication timeline..." status:LogEntryTypeOperation];
         [[[CLKComplicationServer sharedInstance] activeComplications] enumerateObjectsUsingBlock:^(CLKComplication * _Nonnull complication, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self log:@"ClockKit Complication Server" entry:[NSString stringWithFormat:@"Reloaded timeline for complication: %@", complication.description] status:Operation];
+            [self log:@"ClockKit Complication Server" entry:[NSString stringWithFormat:@"Reloaded timeline for complication: %@", complication.description] status:LogEntryTypeOperation];
             [[CLKComplicationServer sharedInstance] reloadTimelineForComplication:complication];
         }];
 }
