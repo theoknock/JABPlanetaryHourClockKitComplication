@@ -115,7 +115,7 @@ CLKComplicationTemplateCircularSmallStackText *(^complicationTemplateCircularSma
 
 CLKComplicationTemplateExtraLargeRingImage *(^complicationTemplateExtraLargeRingImage)(NSString *, CLKComplicationRingStyle, float, UIColor *) = ^(NSString *text, CLKComplicationRingStyle ringStyle, float fillFraction, UIColor *tintColor)
 {
-    //printf("%s", __PRETTY_FUNCTION__);
+//    printf("%s", __PRETTY_FUNCTION__);
     CLKComplicationTemplateExtraLargeRingImage *template = [[CLKComplicationTemplateExtraLargeRingImage alloc] init];
     template.imageProvider = [CLKImageProvider imageProviderWithOnePieceImage:[PlanetaryHourDataSource.data imageFromText](text, tintColor, 72.0)];
     template.ringStyle = ringStyle;
@@ -244,7 +244,7 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
             //            template = complicationTemplateExtraLargeSimpleText([data objectForKey:@"symbol"], [data objectForKey:@"color"]);
             long hour = [(NSNumber *)[data objectForKey:@(Hour)] longValue] + 1;
             float dayExpiry = ((hour * 60) * 60) / SECONDS_PER_DAY;
-            template = complicationTemplateExtraLargeRingImage([(NSAttributedString *)[data objectForKey:@(Symbol)] string], CLKComplicationRingStyleOpen, dayExpiry, [data objectForKey:@(Color)]);
+            template = complicationTemplateExtraLargeRingImage([(NSAttributedString *)[data objectForKey:@(Symbol)] string], CLKComplicationRingStyleOpen, dayExpiry, (UIColor *)[data objectForKey:@(Color)]);
             break;
         }
         case CLKComplicationFamilyCircularSmall:
