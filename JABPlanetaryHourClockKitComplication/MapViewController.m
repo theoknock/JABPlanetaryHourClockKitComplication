@@ -28,33 +28,6 @@
     // Get planetary hour location at end time
     // TO-DO: Add coordinate of planetary hour at sunrise, and add coordinate to North Pole
     //        Add coordinate of planetary hour at sunrise one planetaty hour later
-    
-    NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 1)];
-    NSIndexSet *dataIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange((NSUInteger)StartCoordinate, 2)];
-    NSIndexSet *hoursIndices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 24)];
-    [PlanetaryHourDataSource.data solarCyclesForDays:daysIndices
-                                   planetaryHourData:dataIndices
-                                      planetaryHours:hoursIndices
-         planetaryHourDataSourceStartCompletionBlock:nil
-                           solarCycleCompletionBlock:nil
-                        planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
-                            CLLocationCoordinate2D coordinates[4] =
-                            {
-                                CLLocationCoordinate2DMake(0.0, 0.0),
-                                [(CLLocation *)[planetaryHour objectForKey:@(StartCoordinate)] coordinate],
-                                [(CLLocation *)[planetaryHour objectForKey:@(EndCoordinate)] coordinate],
-                                CLLocationCoordinate2DMake(0.0, 0.0)
-                            };
-                            MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:4];
-                            [self.mapView addOverlay:polyline];
-                            
-                            
-                        }
-                       planetaryHoursCompletionBlock:nil
-              planetaryHourDataSourceCompletionBlock:nil
-     ];
-    
-    
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay

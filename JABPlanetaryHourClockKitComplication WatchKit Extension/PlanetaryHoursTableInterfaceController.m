@@ -41,39 +41,41 @@ void (^updatePlanetaryHoursTable)(__weak WKInterfaceTable *) = ^(__weak WKInterf
     NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 1)];
     NSIndexSet *dataIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 8)];
     NSIndexSet *hoursIndices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 24)];
-    [PlanetaryHourDataSource.data solarCyclesForDays:daysIndices
-                                   planetaryHourData:dataIndices
-                                      planetaryHours:hoursIndices
-         planetaryHourDataSourceStartCompletionBlock:nil
-                           solarCycleCompletionBlock:nil
-                        planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                PlanetaryHourRowController* row = (PlanetaryHourRowController *)[table rowControllerAtIndex:(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue]];
-                                [row.symbol setAttributedText:(NSAttributedString *)[planetaryHour objectForKey:@(Symbol)]];
-                                [row.planet setText:(NSString *)[planetaryHour objectForKey:@(Name)]];
-                                [row.hour setText:[NSString stringWithFormat:@"%ld", (long)(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] + 1]];
-                                [row.hour setTextColor:(UIColor *)[planetaryHour objectForKey:@(Color)]]; // ((NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] < 12) ? [UIColor yellowColor] : [UIColor blueColor]];
-                                NSDateFormatter *dateFormatter      = [[NSDateFormatter alloc] init];
-                                dateFormatter.dateStyle             = NSDateFormatterShortStyle;
-                                NSString *dateString                = [dateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
-                                [row.date setText:dateString];
-                                
-                                NSDateFormatter *startDateFormatter = [[NSDateFormatter alloc] init];
-                                startDateFormatter.timeStyle        = NSDateFormatterShortStyle;
-                                NSString *startDateString           = [startDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
-                                [row.start setText:startDateString];
-                                
-                                NSDateFormatter *endDateFormatter   = [[NSDateFormatter alloc] init];
-                                endDateFormatter.timeStyle          = NSDateFormatterShortStyle;
-                                NSString *endDateString             = [endDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(EndDate)]];
-                                [row.end setText:endDateString];
-                                
-                                //                               if (current)
-                                //                                   [table scrollToRowAtIndex:hour];
-                            });
-                        }
-                       planetaryHoursCompletionBlock:nil
-              planetaryHourDataSourceCompletionBlock:nil];
+    [PlanetaryHourDataSource.data
+     solarCyclesForDays:daysIndices
+     planetaryHourData:dataIndices
+     planetaryHours:hoursIndices
+     planetaryHourDataSourceStartCompletionBlock:nil
+     solarCycleCompletionBlock:nil
+     planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             PlanetaryHourRowController* row = (PlanetaryHourRowController *)[table rowControllerAtIndex:(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue]];
+             [row.symbol setAttributedText:(NSAttributedString *)[planetaryHour objectForKey:@(Symbol)]];
+             [row.planet setText:(NSString *)[planetaryHour objectForKey:@(Name)]];
+             [row.hour setText:[NSString stringWithFormat:@"%ld", (long)(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] + 1]];
+             [row.hour setTextColor:(UIColor *)[planetaryHour objectForKey:@(Color)]]; // ((NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] < 12) ? [UIColor yellowColor] : [UIColor blueColor]];
+             NSDateFormatter *dateFormatter      = [[NSDateFormatter alloc] init];
+             dateFormatter.dateStyle             = NSDateFormatterShortStyle;
+             NSString *dateString                = [dateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
+             [row.date setText:dateString];
+             
+             NSDateFormatter *startDateFormatter = [[NSDateFormatter alloc] init];
+             startDateFormatter.timeStyle        = NSDateFormatterShortStyle;
+             NSString *startDateString           = [startDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
+             [row.start setText:startDateString];
+             
+             NSDateFormatter *endDateFormatter   = [[NSDateFormatter alloc] init];
+             endDateFormatter.timeStyle          = NSDateFormatterShortStyle;
+             NSString *endDateString             = [endDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(EndDate)]];
+             [row.end setText:endDateString];
+             
+             //                               if (current)
+             //                                   [table scrollToRowAtIndex:hour];
+         });
+     }
+     planetaryHoursCompletionBlock:nil
+     planetaryHoursCalculationsCompletionBlock:nil
+     planetaryHourDataSourceCompletionBlock:nil];
 };
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex
@@ -83,6 +85,7 @@ void (^updatePlanetaryHoursTable)(__weak WKInterfaceTable *) = ^(__weak WKInterf
 
 
 @end
+
 
 
 

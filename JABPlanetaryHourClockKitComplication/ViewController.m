@@ -56,7 +56,7 @@
 }
 
 - (void)session:(nonnull WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
-   [self log:@"WatchKit session" entry:[NSString stringWithFormat:@"WatckKit session activation completed (State: %@)", (activationState == 2) ? @"WCSessionActivationStateActivated" : ((activationState == 0) ? @"WCSessionActivationStateNotActivated" : @"WCSessionActivationStateInactive")] time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeEvent];
+    [self log:@"WatchKit session" entry:[NSString stringWithFormat:@"WatckKit session activation completed (State: %@)", (activationState == 2) ? @"WCSessionActivationStateActivated" : ((activationState == 0) ? @"WCSessionActivationStateNotActivated" : @"WCSessionActivationStateInactive")] time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeEvent];
     if (activationState != 2 || error)
     {
         [self log:@"WatchKit session (WatchKit extension)" entry:[NSString stringWithFormat:@"Error activating WatchKit session:\t%@", error.description] status:LogEntryTypeOperation];
@@ -241,17 +241,19 @@ EKEvent *(^planetaryHourEvent)(EKEventStore *, EKCalendar *, NSDictionary<NSNumb
                                                     }
                                                 } planetaryHoursCompletionBlock:^(NSArray<NSDictionary<NSNumber *,NSDate *> *> * _Nonnull planetaryHours) {
                                                     [self->eventStore commit:nil];
-                                                } planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
-                                                    if (error)
-                                                        [self log:@"JABPlanetaryHourFramework" entry:error.description time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeError];
-                                                    else
-                                                        [self log:@"JABPlanetaryHourFramework" entry:[NSString stringWithFormat:@"%lu planetary hours added to the Planetary Hour calendar", days.length * hours.length] time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeSuccess];
-                                                    
-                                                    if ([self->eventStore saveCalendar:calendar commit:TRUE error:nil])
-                                                        [self log:@"JABPlanetaryHourFramework" entry:@"New planetary hour calendar saved." time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeSuccess];
-                                                    else
-                                                        [self log:@"JABPlanetaryHourFramework" entry:@"Error saving new planetary hour calendar." time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeError];
-                                                }];
+                                                }
+                                   planetaryHoursCalculationsCompletionBlock:nil
+                                      planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
+                                          if (error)
+                                              [self log:@"JABPlanetaryHourFramework" entry:error.description time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeError];
+                                          else
+                                              [self log:@"JABPlanetaryHourFramework" entry:[NSString stringWithFormat:@"%lu planetary hours added to the Planetary Hour calendar", days.length * hours.length] time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeSuccess];
+                                          
+                                          if ([self->eventStore saveCalendar:calendar commit:TRUE error:nil])
+                                              [self log:@"JABPlanetaryHourFramework" entry:@"New planetary hour calendar saved." time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeSuccess];
+                                          else
+                                              [self log:@"JABPlanetaryHourFramework" entry:@"Error saving new planetary hour calendar." time:CMClockGetTime(CMClockGetHostTimeClock()) textAttributes:LogEntryTypeError];
+                                      }];
                         }
                     }
                 });
@@ -263,4 +265,5 @@ EKEvent *(^planetaryHourEvent)(EKEventStore *, EKCalendar *, NSDictionary<NSNumb
 }
 
 @end
+
 
