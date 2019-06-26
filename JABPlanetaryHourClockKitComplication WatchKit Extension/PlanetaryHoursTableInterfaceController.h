@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PlanetaryHoursTableInterfaceController : WKInterfaceController
 
 @property (weak, nonatomic) IBOutlet WKInterfaceTable *planetaryHoursTable;
+@property (weak, nonatomic) IBOutlet WKTapGestureRecognizer *mapTapGesture;
 
 @end
 

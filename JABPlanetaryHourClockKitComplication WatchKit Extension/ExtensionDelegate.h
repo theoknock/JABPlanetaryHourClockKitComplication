@@ -16,5 +16,6 @@
 
 - (void)log:(NSString *)context entry:(NSString *)entry status:(LogEntryType)type;
 - (void)reloadComplicationTimeline;
+@property (assign, nonatomic, setter=setReloadingComplicationTimeline:) NSNumber *reloadingComplicationTimeline;
 
 @end

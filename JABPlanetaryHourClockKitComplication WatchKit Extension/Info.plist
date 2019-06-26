@@ -56,5 +56,7 @@
 	<string></string>
 	<key>WKExtensionDelegateClassName</key>
 	<string>ExtensionDelegate</string>
+	<key>WKRunsIndependentlyOfCompanionApp</key>
+	<true/>
 </dict>
 </plist>

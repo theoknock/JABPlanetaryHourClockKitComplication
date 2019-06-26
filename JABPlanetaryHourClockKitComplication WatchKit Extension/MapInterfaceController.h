@@ -9,6 +9,9 @@
 #import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
 
+#import "ExtensionDelegate.h"
+#define ExtensionDelegate ((ExtensionDelegate *)[[WKExtension sharedExtension] delegate])
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MapInterfaceController : WKInterfaceController

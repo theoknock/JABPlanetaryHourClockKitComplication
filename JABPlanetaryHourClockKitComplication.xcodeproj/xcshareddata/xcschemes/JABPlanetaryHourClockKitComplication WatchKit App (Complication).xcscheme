@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1100"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B93BC516226E4E7E00BB32B7"
-               BuildableName = "JABPlanetaryHourClockKitComplication WatchKit App.app"
-               BlueprintName = "JABPlanetaryHourClockKitComplication WatchKit App"
-               ReferencedContainer = "container:JABPlanetaryHourClockKitComplication.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -42,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B93BC525226E4E7F00BB32B7"
-               BuildableName = "JABPlanetaryHourClockKitComplication WatchKit Extension.appex"
-               BlueprintName = "JABPlanetaryHourClockKitComplication WatchKit Extension"
-               ReferencedContainer = "container:JABPlanetaryHourClockKitComplication.xcodeproj">
+               BlueprintIdentifier = "B93BC4D1226E483000BB32B7"
+               BuildableName = "JABPlanetaryHourWatchFramework.framework"
+               BlueprintName = "JABPlanetaryHourWatchFramework"
+               ReferencedContainer = "container:../../JABPlanetaryHourFrameworks/JABPlanetaryHourWatchFramework/JABPlanetaryHourWatchFramework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -55,8 +41,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -66,8 +50,8 @@
             ReferencedContainer = "container:JABPlanetaryHourClockKitComplication.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -93,17 +77,6 @@
             ReferencedContainer = "container:JABPlanetaryHourClockKitComplication.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B93BC516226E4E7E00BB32B7"
-            BuildableName = "JABPlanetaryHourClockKitComplication WatchKit App.app"
-            BlueprintName = "JABPlanetaryHourClockKitComplication WatchKit App"
-            ReferencedContainer = "container:JABPlanetaryHourClockKitComplication.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

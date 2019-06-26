@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14810.12" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
+    <device id="watch44"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14619.8"/>
     </dependencies>
     <scenes>
-        <!--Map Interface Controller-->
+        <!--MapInterfaceController-->
         <scene sceneID="24b-c6-8Yi">
             <objects>
-                <controller fullBounds="YES" fullScreen="YES" id="DVN-Eh-MXf" customClass="MapInterfaceController">
+                <controller identifier="MapInterfaceController" id="DVN-Eh-MXf" customClass="MapInterfaceController">
                     <items>
-                        <map width="1" height="1" alignment="left" enabled="NO" id="M4M-lc-Xk4"/>
+                        <map alignment="center" verticalAlignment="bottom" enabled="NO" id="M4M-lc-Xk4"/>
                     </items>
                     <connections>
                         <outlet property="map" destination="M4M-lc-Xk4" id="bSr-cO-z2B"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="55" y="12"/>
+            <point key="canvasLocation" x="220" y="30"/>
         </scene>
         <!--Planetary Hours Table Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller fullBounds="YES" fullScreen="YES" id="AgC-eL-Hgc" customClass="PlanetaryHoursTableInterfaceController">
+                <controller animationDuration="1" alwaysBounce="YES" fullBounds="YES" fullScreen="YES" id="AgC-eL-Hgc" customClass="PlanetaryHoursTableInterfaceController">
                     <items>
                         <table alignment="center" verticalAlignment="center" pagingScroll="YES" id="7WH-Lw-LYb">
                             <items>
                                 <tableRow identifier="PlanetaryHoursTableRow" id="yuu-sr-nLx" customClass="PlanetaryHourRowController">
-                                    <group key="rootItem" width="1" height="0.0" alignment="left" contentMode="center" layout="overlap" id="F5O-HA-3NG">
+                                    <group key="rootItem" width="1" height="1" alignment="left" animationDuration="1" layout="overlap" id="F5O-HA-3NG">
                                         <items>
-                                            <group width="1" alignment="center" verticalAlignment="center" contentMode="center" layout="vertical" id="kcA-un-GE4">
+                                            <group alignment="center" verticalAlignment="center" contentMode="center" layout="vertical" id="kcA-un-GE4">
                                                 <items>
                                                     <label alignment="center" text="㊏" textAlignment="center" minimumScaleFactor="0.5" id="Yk4-cv-v7D">
                                                         <accessibilityTraits key="accessibilityTraits" staticText="YES" notEnabled="YES"/>
                                                         <fontDescription key="font" style="UICTFontTextStyleTitle0"/>
                                                     </label>
-                                                    <label alignment="center" text="EARTH" textAlignment="center" minimumScaleFactor="0.5" id="gd0-gz-3rf">
+                                                    <label width="1" alignment="center" text="EARTH" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="gd0-gz-3rf">
                                                         <accessibilityTraits key="accessibilityTraits" staticText="YES" notEnabled="YES"/>
                                                         <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
                                                     </label>
-                                                    <label alignment="center" verticalAlignment="center" text="9/26/1972" textAlignment="center" id="w7n-L5-Pie">
+                                                    <label width="1" alignment="center" verticalAlignment="center" text="9/26/1972" textAlignment="center" baselineAdjustment="alignCenters" id="w7n-L5-Pie">
                                                         <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                                     </label>
-                                                    <group width="1" alignment="center" verticalAlignment="center" id="t0p-A0-fhT">
+                                                    <group alignment="center" verticalAlignment="center" contentMode="center" id="t0p-A0-fhT">
                                                         <items>
                                                             <label alignment="left" verticalAlignment="center" text="6:48 AM" id="UI9-HR-kSc">
                                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
@@ -61,11 +59,12 @@
                                                     </group>
                                                 </items>
                                             </group>
-                                            <group alignment="center" verticalAlignment="center" alpha="0.25" contentMode="center" layout="vertical" id="UmZ-2c-M8c">
+                                            <group alignment="center" verticalAlignment="center" alpha="0.25" contentMode="center" animationDuration="1" layout="vertical" id="UmZ-2c-M8c">
                                                 <items>
-                                                    <label width="1" height="1" alignment="center" verticalAlignment="center" text="0" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="bB1-Du-b2i">
+                                                    <label width="136" height="1" alignment="center" verticalAlignment="center" text="0" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="bB1-Du-b2i">
+                                                        <accessibilityTraits key="accessibilityTraits" staticText="YES" notEnabled="YES"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="font" type="system" weight="light" pointSize="154"/>
+                                                        <fontDescription key="font" type="italicSystem" pointSize="196"/>
                                                     </label>
                                                 </items>
                                             </group>
@@ -88,7 +87,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="344.5"/>
+            <point key="canvasLocation" x="219.52173913043478" y="343.79464285714289"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

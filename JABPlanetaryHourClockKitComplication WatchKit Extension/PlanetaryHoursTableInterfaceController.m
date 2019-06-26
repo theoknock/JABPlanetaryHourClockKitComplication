@@ -8,6 +8,7 @@
 
 #import "PlanetaryHoursTableInterfaceController.h"
 #import "PlanetaryHourRowController.h"
+#import "MapInterfaceController.h"
 #import <JABPlanetaryHourWatchFramework/JABPlanetaryHourWatchFramework.h>
 
 @implementation PlanetaryHoursTableInterfaceController
@@ -43,6 +44,7 @@ void (^updatePlanetaryHoursTable)(__weak WKInterfaceTable *) = ^(__weak WKInterf
     [PlanetaryHourDataSource.data solarCyclesForDays:daysIndices
                                    planetaryHourData:dataIndices
                                       planetaryHours:hoursIndices
+         planetaryHourDataSourceStartCompletionBlock:nil
                            solarCycleCompletionBlock:nil
                         planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
                             dispatch_async(dispatch_get_main_queue(), ^{
@@ -65,7 +67,7 @@ void (^updatePlanetaryHoursTable)(__weak WKInterfaceTable *) = ^(__weak WKInterf
                                 endDateFormatter.timeStyle          = NSDateFormatterShortStyle;
                                 NSString *endDateString             = [endDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(EndDate)]];
                                 [row.end setText:endDateString];
-
+                                
                                 //                               if (current)
                                 //                                   [table scrollToRowAtIndex:hour];
                             });
@@ -76,10 +78,11 @@ void (^updatePlanetaryHoursTable)(__weak WKInterfaceTable *) = ^(__weak WKInterf
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex
 {
-    //    [(ExtensionDelegate *)[[WKExtension sharedExtension] delegate] switchControllersWithSelectedHour:rowIndex];
+    [self presentControllerWithName:@"MapInterfaceController" context:[NSNumber numberWithInteger:rowIndex]];
 }
 
 
 @end
+
 
 

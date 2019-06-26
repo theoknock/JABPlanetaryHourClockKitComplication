@@ -10,7 +10,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="PMg-Yg-Wdi">
+            <objects>
+                <tabBarController id="5iL-jh-JdU" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vEo-Ph-Zhc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="buS-rp-L8J" kind="relationship" relationship="viewControllers" id="ZpY-dg-WhH"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="oau-OS-hlZ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="knF-OZ-Foz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2003" y="-186"/>
+        </scene>
+        <!--Log-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -19,17 +37,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNu-Ts-R0E">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Event Log">
-                                        <attributes>
-                                            <color key="NSColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textView>
                         </subviews>
@@ -42,12 +52,49 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Uee-0j-aNJ"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Log" id="tAF-nm-8Eb"/>
                     <connections>
-                        <outlet property="logTextView" destination="MNu-Ts-R0E" id="WxJ-c6-0MH"/>
+                        <outlet property="eventLogTextView" destination="MNu-Ts-R0E" id="WVM-1p-XCl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1032" y="36"/>
+        </scene>
+        <!-- Map-->
+        <scene sceneID="PCs-7E-3kI">
+            <objects>
+                <viewController id="buS-rp-L8J" customClass="MapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sAx-cF-oZa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satelliteFlyover" showsUserLocation="YES" showsBuildings="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA4-Lg-dep">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <connections>
+                                    <outlet property="delegate" destination="buS-rp-L8J" id="6tu-G9-TeV"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WA4-Lg-dep" firstAttribute="leading" secondItem="eel-pN-6X9" secondAttribute="leading" id="6Pk-sO-r8c"/>
+                            <constraint firstItem="WA4-Lg-dep" firstAttribute="top" secondItem="eel-pN-6X9" secondAttribute="top" id="At7-Va-h9P"/>
+                            <constraint firstItem="WA4-Lg-dep" firstAttribute="trailing" secondItem="eel-pN-6X9" secondAttribute="trailing" id="F3n-Yz-qi2"/>
+                            <constraint firstItem="WA4-Lg-dep" firstAttribute="bottom" secondItem="eel-pN-6X9" secondAttribute="bottom" id="a9Q-wQ-YPf"/>
+                            <constraint firstItem="WA4-Lg-dep" firstAttribute="height" relation="lessThanOrEqual" secondItem="eel-pN-6X9" secondAttribute="height" id="hwz-VR-U09"/>
+                            <constraint firstItem="WA4-Lg-dep" firstAttribute="width" relation="lessThanOrEqual" secondItem="sAx-cF-oZa" secondAttribute="width" id="xA2-VF-ohE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eel-pN-6X9"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title=" Map" id="CPU-EI-QsX"/>
+                    <connections>
+                        <outlet property="mapView" destination="WA4-Lg-dep" id="KqQ-ME-v2H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g5t-wo-FKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1033.3333333333335" y="-672.32142857142856"/>
         </scene>
     </scenes>
 </document>

@@ -10,12 +10,21 @@
 
 @implementation ExtensionDelegate
 
+@synthesize reloadingComplicationTimeline = _reloadingComplicationTimeline;
+
+- (NSNumber *)reloadingComplicationTimelime
+{
+    return self->_reloadingComplicationTimeline;
+}
+
+- (void)setReloadingComplicationTimeline:(NSNumber *)reloadingComplicationTimeline
+{
+    self->_reloadingComplicationTimeline = reloadingComplicationTimeline;
+}
+
 - (void)applicationDidFinishLaunching {
     // Perform any final initialization of your application.
-    self.session = [WCSession defaultSession];
-    [self.session setDelegate:(id<WCSessionDelegate> _Nullable)self];
-    [self.session activateSession];
-    [self log:@"WatchKit session (WatchKit extension)" entry:@"Activating WatchKit session" status:LogEntryTypeOperation];
+    [self activateSession];
     
     [PlanetaryHourDataSource.data setPlanetaryHourDataSourceDelegate:(id<PlanetaryHourDataSourceLogDelegate> _Nullable)self];
     
@@ -23,12 +32,39 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadComplicationTimeline) name:@"PlanetaryHoursDataSourceUpdatedNotification" object:nil];
 }
 
+- (void)activateSession
+{
+    // WatchKit Connectivity
+    [self log:@"WatchKit session (WatchKit extension)" entry:@"Activating WatchKit session" status:LogEntryTypeOperation];
+    self.session = [WCSession defaultSession];
+    [self.session setDelegate:(id<WCSessionDelegate> _Nullable)self];
+    [self.session activateSession];
+}
+
+- (void)session:(WCSession *)session didReceiveMessage:(NSDictionary<NSString *,id> *)message replyHandler:(void (^)(NSDictionary<NSString *,id> * _Nonnull))replyHandler
+{
+    if ([(NSString *)[message objectForKey:@"command"] isEqualToString:@"log"])
+    {
+        LogEntryType textAttributes = (LogEntryType)[(NSNumber *)[message objectForKey:@"event"] unsignedIntegerValue];
+        [self log:[NSString stringWithFormat:@"%@", [message objectForKey:@"context"]] entry:[NSString stringWithFormat:@"%@", [message objectForKey:@"entry"]] status:textAttributes];
+    }
+}
+
+- (void)session:(nonnull WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
+    [self log:@"WatchKit session" entry:[NSString stringWithFormat:@"WatckKit session activation completed (State: %@)", (activationState == 2) ? @"WCSessionActivationStateActivated" : ((activationState == 0) ? @"WCSessionActivationStateNotActivated" : @"WCSessionActivationStateInactive")] status:LogEntryTypeEvent];
+    if (activationState != 2 || error)
+    {
+        [self log:@"WatchKit session (WatchKit extension)" entry:[NSString stringWithFormat:@"Error activating WatchKit session:\t%@", error.description] status:LogEntryTypeOperation];
+        [self.session activateSession];
+    }
+}
+
 - (void)log:(NSString *)context entry:(NSString *)entry status:(LogEntryType)type
 {
     if (self.session.reachable)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.session sendMessage:@{@"context" : context, @"entry" : entry, @"type" : @(type)} replyHandler:^(NSDictionary<NSString *,id> * _Nonnull replyMessage) {
+            [self.session sendMessage:@{@"command" : @"log", @"context" : context, @"entry" : entry, @"type" : @(type)} replyHandler:^(NSDictionary<NSString *,id> * _Nonnull replyMessage) {
                 NSLog(@"%@", [replyMessage objectForKey:@"reply"]);
             } errorHandler:^(NSError * _Nonnull error) {
                 NSLog(@"Error sending message: %@", error.description);
@@ -81,20 +117,19 @@
     }
 }
 
-- (void)session:(nonnull WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
-    if (!error)
-        [self log:@"WatchKit session (WatchKit extension)" entry:[NSString stringWithFormat:@"Session activated (State: %d)", activationState] status:LogEntryTypeEvent];
-    else
-        [self log:@"WatchKit session (WatchKit extension)" entry:[NSString stringWithFormat:@"Session activation error: %@", error.description] status:LogEntryTypeError];
-}
-
 - (void)reloadComplicationTimeline
 {
+    if ([[self reloadingComplicationTimelime] boolValue] == FALSE)
+    {
         [self log:@"ClockKit Complication Server" entry:@"Reloading complication timeline..." status:LogEntryTypeOperation];
         [[[CLKComplicationServer sharedInstance] activeComplications] enumerateObjectsUsingBlock:^(CLKComplication * _Nonnull complication, NSUInteger idx, BOOL * _Nonnull stop) {
             [self log:@"ClockKit Complication Server" entry:[NSString stringWithFormat:@"Reloaded timeline for complication: %@", complication.description] status:LogEntryTypeOperation];
             [[CLKComplicationServer sharedInstance] reloadTimelineForComplication:complication];
         }];
+    } else {
+        [self log:@"ClockKit Complication Server" entry:@"Request to reload complication timeline denied; reloading is already in progress." status:LogEntryTypeOperation];
+        
+    }
 }
 
 @end

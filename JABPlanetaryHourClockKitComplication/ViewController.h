@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <CoreMedia/CoreMedia.h>
 #import <WatchConnectivity/WatchConnectivity.h>
+#import <EventKit/EventKit.h>
+#import <JABPlanetaryHourCocoaTouchFramework/JABPlanetaryHourCocoaTouchFramework.h>
 
-@interface ViewController : UIViewController <WCSessionDelegate>
+@interface ViewController : UIViewController <WCSessionDelegate, PlanetaryHourDataSourceLogDelegate>
 
 @property (strong, nonatomic) WCSession *session;
-@property (weak, nonatomic) IBOutlet UITextView *logTextView;
+@property (weak, nonatomic) IBOutlet UITextView *eventLogTextView;
 
+- (void)log:(NSString *)context entry:(NSString *)entry status:(LogEntryType)status;
+- (void)log:(NSString *)context entry:(NSString *)entry time:(CMTime)time textAttributes:(NSUInteger)logTextAttributes;
 @end
-
