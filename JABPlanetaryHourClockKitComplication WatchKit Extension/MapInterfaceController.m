@@ -24,7 +24,7 @@
     [self.map addAnnotation:PlanetaryHourDataSource.data.locationManager.location.coordinate withPinColor:WKInterfaceMapPinColorPurple];
     
     NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 1)];
-    NSIndexSet *dataIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 8)];
+    NSIndexSet *dataIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 11)];
     NSIndexSet *hoursIndices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 24)];
     [PlanetaryHourDataSource.data
      solarCyclesForDays:daysIndices
@@ -34,19 +34,27 @@
      solarCycleCompletionBlock:nil
      planetaryHourCompletionBlock:nil
      planetaryHoursCompletionBlock:nil
-     planetaryHoursCalculationsCompletionBlock:^(NSArray<NSArray<NSDictionary<NSNumber *,id> *> *> * _Nullable planetaryHours) {
-//         [planetaryHours enumerateObjectsUsingBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour, NSUInteger idx, BOOL * _Nonnull stop) {
-//             NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHour objectForKey:@(StartDate)] endDate:[planetaryHour objectForKey:@(EndDate)]];
-//             if ([dateInterval containsDate:[NSDate date]])
-//             {
-//                 CGPoint offset = CGPointMake(0.0, 0.0);
-//                 [self.map addAnnotation:[(CLLocation *)[planetaryHour objectForKey:@(StartCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([planetaryHour objectForKey:@(Symbol)], [planetaryHour objectForKey:@(Color)], 9.0) centerOffset:offset];
-//                 if (idx != 0) [self.map addAnnotation:[(CLLocation *)[planetaryHours[idx - 1] objectForKey:@(StartCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([planetaryHour objectForKey:@(Symbol)], [planetaryHour objectForKey:@(Color)], 9.0) centerOffset:offset];
-//                 if (idx != 24) [self.map addAnnotation:[(CLLocation *)[planetaryHours[idx + 1] objectForKey:@(StartCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([planetaryHour objectForKey:@(Symbol)], [planetaryHour objectForKey:@(Color)], 9.0) centerOffset:offset];
-//
-//             }
-//         }];
-         NSLog(@"Planetary Hours Data arrays count: %lu", (unsigned long)planetaryHours.count);
+     planetaryHoursCalculationsCompletionBlock:^(NSArray<NSArray<NSDictionary<NSNumber *,id> *> *> * _Nullable planetaryHoursArrays) {
+         __block BOOL didAddAnnotation = FALSE;
+         [planetaryHoursArrays enumerateObjectsUsingBlock:^(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull planetaryHours, NSUInteger idx, BOOL * _Nonnull stop) {
+             [planetaryHours enumerateObjectsUsingBlock:^(NSDictionary<NSNumber *,id> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                 NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHours[idx] objectForKey:@(StartDate)] endDate:[planetaryHours[idx] objectForKey:@(EndDate)]];
+                 if ([dateInterval containsDate:[NSDate date]])
+                 {
+                     [self.map removeAllAnnotations];
+                     CGPoint offset = CGPointMake(0.0, 0.0);
+                     // TO-DO: Update the start and end coordinates for the current time; get the current location for the center annotation
+                     //        add a dispatch_block to the return parameters for this completion block for calculating coordinates
+                     [self.map addAnnotation:[(CLLocation *)[planetaryHours[idx] objectForKey:@(StartCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[idx] objectForKey:@(Symbol)] string], [planetaryHours[idx] objectForKey:@(Color)], 9.0) centerOffset:offset];
+                     [self.map addAnnotation:[(CLLocation *)[planetaryHours[idx] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[idx] objectForKey:@(Symbol)] string], [planetaryHours[idx] objectForKey:@(Color)], 9.0) centerOffset:offset];
+                     [self.map addAnnotation:[(CLLocation *)[planetaryHours[idx] objectForKey:@(EndCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[idx] objectForKey:@(Symbol)] string], [planetaryHours[idx] objectForKey:@(Color)], 9.0) centerOffset:offset];
+                     didAddAnnotation = TRUE;
+                     *stop = YES;
+                 }
+             }];
+             if (didAddAnnotation) *stop = YES;
+         }];
+         NSLog(@"Planetary Hours Data arrays count: %lu", (unsigned long)planetaryHoursArrays.count);
      }
      planetaryHourDataSourceCompletionBlock:nil];
 
