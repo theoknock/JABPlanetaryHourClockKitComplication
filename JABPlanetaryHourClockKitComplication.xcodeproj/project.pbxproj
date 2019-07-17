@@ -34,27 +34,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B904CE0422D3CA420086CAF8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B904CDFE22D3CA420086CAF8 /* JABPlanetaryHourToneBarrier.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B904CDB722D3CA340086CAF8;
-			remoteInfo = JABPlanetaryHourToneBarrier;
-		};
-		B904CE0622D3CA420086CAF8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B904CDFE22D3CA420086CAF8 /* JABPlanetaryHourToneBarrier.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B904CDCD22D3CA350086CAF8;
-			remoteInfo = "JABPlanetaryHourToneBarrier WatchKit App";
-		};
-		B904CE0822D3CA420086CAF8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B904CDFE22D3CA420086CAF8 /* JABPlanetaryHourToneBarrier.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B904CDDC22D3CA350086CAF8;
-			remoteInfo = "JABPlanetaryHourToneBarrier WatchKit Extension";
-		};
 		B91FA15722C313AB0082239F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B992083422A4730D0045BD2C /* JABPlanetaryHourFrameworks.xcodeproj */;
@@ -133,7 +112,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B904CDFE22D3CA420086CAF8 /* JABPlanetaryHourToneBarrier.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JABPlanetaryHourToneBarrier.xcodeproj; path = ../JABPlanetaryHourToneBarrier/JABPlanetaryHourToneBarrier.xcodeproj; sourceTree = "<group>"; };
 		B90A0A5522AB86ED0025A243 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		B90A0A5622AB86ED0025A243 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		B90A0A5822AB87B90025A243 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -195,20 +173,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B904CDFF22D3CA420086CAF8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B904CE0522D3CA420086CAF8 /* JABPlanetaryHourToneBarrier.app */,
-				B904CE0722D3CA420086CAF8 /* JABPlanetaryHourToneBarrier WatchKit App.app */,
-				B904CE0922D3CA420086CAF8 /* JABPlanetaryHourToneBarrier WatchKit Extension.appex */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B93BC4F8226E4E7D00BB32B7 = {
 			isa = PBXGroup;
 			children = (
-				B904CDFE22D3CA420086CAF8 /* JABPlanetaryHourToneBarrier.xcodeproj */,
 				B992084422A474C90045BD2C /* JABPlanetaryHourWatchFramework.framework */,
 				B992083422A4730D0045BD2C /* JABPlanetaryHourFrameworks.xcodeproj */,
 				B93BC503226E4E7D00BB32B7 /* JABPlanetaryHourClockKitComplication */,
@@ -394,10 +361,6 @@
 					ProductGroup = B992083522A4730D0045BD2C /* Products */;
 					ProjectRef = B992083422A4730D0045BD2C /* JABPlanetaryHourFrameworks.xcodeproj */;
 				},
-				{
-					ProductGroup = B904CDFF22D3CA420086CAF8 /* Products */;
-					ProjectRef = B904CDFE22D3CA420086CAF8 /* JABPlanetaryHourToneBarrier.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -407,30 +370,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		B904CE0522D3CA420086CAF8 /* JABPlanetaryHourToneBarrier.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = JABPlanetaryHourToneBarrier.app;
-			remoteRef = B904CE0422D3CA420086CAF8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B904CE0722D3CA420086CAF8 /* JABPlanetaryHourToneBarrier WatchKit App.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "JABPlanetaryHourToneBarrier WatchKit App.app";
-			remoteRef = B904CE0622D3CA420086CAF8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B904CE0922D3CA420086CAF8 /* JABPlanetaryHourToneBarrier WatchKit Extension.appex */ = {
-			isa = PBXReferenceProxy;
-			fileType = "wrapper.app-extension";
-			path = "JABPlanetaryHourToneBarrier WatchKit Extension.appex";
-			remoteRef = B904CE0822D3CA420086CAF8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B93BC4FF226E4E7D00BB32B7 /* Resources */ = {
