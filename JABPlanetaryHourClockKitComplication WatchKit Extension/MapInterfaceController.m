@@ -43,9 +43,9 @@
                 {
                     [self.map addAnnotation:PlanetaryHourDataSource.data.locationManager.location.coordinate withPinColor:WKInterfaceMapPinColorPurple];
                     CGPoint offset = CGPointMake(0.0, 0.0);
-                    [self.map addAnnotation:[(CLLocation *)[planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Symbol)] string], [planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Color)], 9.0) centerOffset:offset];
-                    [self.map addAnnotation:[(CLLocation *)[planetaryHours[idx] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[idx] objectForKey:@(Symbol)] string], [planetaryHours[idx] objectForKey:@(Color)], 9.0) centerOffset:offset];
-                    [self.map addAnnotation:[(CLLocation *)[planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(Symbol)] string], [planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(Color)], 9.0) centerOffset:offset];
+                    [self.map addAnnotation:[(CLLocation *)[planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Symbol)] string], [planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Color)], 14.0) centerOffset:offset];
+                    [self.map addAnnotation:[(CLLocation *)[planetaryHours[idx] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[idx] objectForKey:@(Symbol)] string], [planetaryHours[idx] objectForKey:@(Color)], 14.0) centerOffset:offset];
+                    [self.map addAnnotation:[(CLLocation *)[planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(Symbol)] string], [planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(Color)], 14.0) centerOffset:offset];
 
                     MKMapRect zoomRect = MKMapRectNull;
                     for (int location = -1; location < 2; location++) {

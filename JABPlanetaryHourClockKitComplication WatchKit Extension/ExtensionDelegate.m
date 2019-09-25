@@ -70,7 +70,7 @@
                     if (error != nil) {
                         NSLog(@"%@", error.localizedDescription);
                     } else {
-                        NSLog(@"Added %@ %@ %@", request.content.title, request.content.subtitle, request.content.body);
+                        NSLog(@"Added %@ %@ %@", [(NSAttributedString *)request.content.title string], [(NSAttributedString *)request.content.subtitle string], [(NSAttributedString *)request.content.body string]);
                     }
                 }];
             }];

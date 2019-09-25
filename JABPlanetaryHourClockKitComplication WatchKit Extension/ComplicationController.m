@@ -371,7 +371,7 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
     __block CLKComplicationTemplate *template;
     __block CLKComplicationTimelineEntry *tle;
     
-    NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 2)];
+    NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 1)];
     NSIndexSet *dataIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 8)];
     NSIndexSet *hoursIndices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 24)];
     [PlanetaryHourDataSource.data
