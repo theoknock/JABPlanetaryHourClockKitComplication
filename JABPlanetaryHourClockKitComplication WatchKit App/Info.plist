@@ -29,5 +29,13 @@
 	<string>com.blogspot.demonicactivity.bush.alan.james.JABPlanetaryHourClockKitComplication</string>
 	<key>WKWatchKitApp</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
+	<key>NSLocationUsageDescription</key>
+	<string></string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string></string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string></string>
 </dict>
 </plist>

@@ -24,6 +24,7 @@
 		B93BC533226E4E7F00BB32B7 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93BC532226E4E7F00BB32B7 /* NotificationController.m */; };
 		B93BC536226E4E7F00BB32B7 /* ComplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93BC535226E4E7F00BB32B7 /* ComplicationController.m */; };
 		B93BC538226E4E8000BB32B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B93BC537226E4E8000BB32B7 /* Assets.xcassets */; };
+		B9561B2723305E490022D810 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9561B2623305E490022D810 /* MapKit.framework */; };
 		B992084222A4746F0045BD2C /* JABPlanetaryHourCocoaTouchFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B992084022A4742F0045BD2C /* JABPlanetaryHourCocoaTouchFramework.framework */; };
 		B992084322A4746F0045BD2C /* JABPlanetaryHourCocoaTouchFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B992084022A4742F0045BD2C /* JABPlanetaryHourCocoaTouchFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B992084522A474C90045BD2C /* JABPlanetaryHourWatchFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B992084422A474C90045BD2C /* JABPlanetaryHourWatchFramework.framework */; };
@@ -142,6 +143,8 @@
 		B93BC537226E4E8000BB32B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B93BC539226E4E8000BB32B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B93BC53A226E4E8000BB32B7 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		B9561B2623305E490022D810 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.0.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
+		B9561B2823305E5E0022D810 /* JABPlanetaryHourClockKitComplication WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "JABPlanetaryHourClockKitComplication WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		B992083422A4730D0045BD2C /* JABPlanetaryHourFrameworks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JABPlanetaryHourFrameworks.xcodeproj; path = ../../JABPlanetaryHourFrameworks/JABPlanetaryHourFrameworks.xcodeproj; sourceTree = "<group>"; };
 		B992084022A4742F0045BD2C /* JABPlanetaryHourCocoaTouchFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JABPlanetaryHourCocoaTouchFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B992084422A474C90045BD2C /* JABPlanetaryHourWatchFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JABPlanetaryHourWatchFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9561B2723305E490022D810 /* MapKit.framework in Frameworks */,
 				B992084522A474C90045BD2C /* JABPlanetaryHourWatchFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +233,7 @@
 		B93BC52A226E4E7F00BB32B7 /* JABPlanetaryHourClockKitComplication WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B9561B2823305E5E0022D810 /* JABPlanetaryHourClockKitComplication WatchKit Extension.entitlements */,
 				B93BC52B226E4E7F00BB32B7 /* InterfaceController.h */,
 				B93BC52C226E4E7F00BB32B7 /* InterfaceController.m */,
 				B9BB49CE228D1C1C00192B7A /* MapInterfaceController.h */,
@@ -253,6 +258,7 @@
 		B93BC5C0226E769400BB32B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B9561B2623305E490022D810 /* MapKit.framework */,
 				B992084022A4742F0045BD2C /* JABPlanetaryHourCocoaTouchFramework.framework */,
 			);
 			name = Frameworks;
@@ -532,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -585,7 +591,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -597,6 +603,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "JABPlanetaryHourClockKitComplication WatchKit Extension/JABPlanetaryHourClockKitComplication WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N9987K9442;
 				INFOPLIST_FILE = "JABPlanetaryHourClockKitComplication WatchKit Extension/Info.plist";
@@ -610,7 +617,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Debug;
 		};
@@ -618,6 +625,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "JABPlanetaryHourClockKitComplication WatchKit Extension/JABPlanetaryHourClockKitComplication WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N9987K9442;
 				INFOPLIST_FILE = "JABPlanetaryHourClockKitComplication WatchKit Extension/Info.plist";
@@ -631,7 +639,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Release;
 		};
@@ -648,7 +656,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Debug;
 		};
@@ -665,7 +673,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Release;
 		};

@@ -47,16 +47,16 @@
 		<string>com.apple.watchkit</string>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Needs location data</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>Needs location data</string>
 	<key>NSLocationUsageDescription</key>
-	<string></string>
+	<string>Needs location data</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Needs location data</string>
 	<key>WKExtensionDelegateClassName</key>
 	<string>ExtensionDelegate</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>
-	<true/>
+	<false/>
 </dict>
 </plist>

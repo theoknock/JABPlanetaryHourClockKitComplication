@@ -21,6 +21,7 @@
     NSLog(@"Selected row: %ld", (long)((NSNumber *)context).integerValue);
     
     // Configure interface objects here.
+    [self.map removeAllAnnotations];
     [self.map addAnnotation:PlanetaryHourDataSource.data.locationManager.location.coordinate withPinColor:WKInterfaceMapPinColorPurple];
     
     NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 1)];
@@ -40,7 +41,6 @@
                 NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHours[idx] objectForKey:@(StartDate)] endDate:[planetaryHours[idx] objectForKey:@(EndDate)]];
                 if ([dateInterval containsDate:[NSDate date]])
                 {
-                    [self.map removeAllAnnotations];
                     [self.map addAnnotation:PlanetaryHourDataSource.data.locationManager.location.coordinate withPinColor:WKInterfaceMapPinColorPurple];
                     CGPoint offset = CGPointMake(0.0, 0.0);
                     [self.map addAnnotation:[(CLLocation *)[planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Symbol)] string], [planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Color)], 9.0) centerOffset:offset];
@@ -57,6 +57,8 @@
                             zoomRect = MKMapRectUnion(zoomRect, pointRect);
                         }
                     }
+                    
+                    // add padding here
                     [self.map setVisibleMapRect:zoomRect];
                     
                     

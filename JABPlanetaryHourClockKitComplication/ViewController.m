@@ -32,7 +32,7 @@
     
     eventStore = [[EKEventStore alloc] init];
     
-    [self calendarComplicationTimelineEntriesPlanetaryHours:720];
+//    [self calendarComplicationTimelineEntriesPlanetaryHours:720];
 }
 
 - (void)activateSession

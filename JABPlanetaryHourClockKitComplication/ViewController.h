@@ -17,6 +17,6 @@
 @property (strong, nonatomic) WCSession *session;
 @property (weak, nonatomic) IBOutlet UITextView *eventLogTextView;
 
-- (void)log:(NSString *)context entry:(NSString *)entry status:(LogEntryType)status;
+//- (void)log:(NSString *)context entry:(NSString *)entry status:(LogEntryType)status;
 - (void)log:(NSString *)context entry:(NSString *)entry time:(CMTime)time textAttributes:(NSUInteger)logTextAttributes;
 @end

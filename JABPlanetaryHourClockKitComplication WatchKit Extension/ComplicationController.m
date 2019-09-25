@@ -369,6 +369,7 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
 
 - (void)getCurrentTimelineEntryForComplication:(CLKComplication *)complication withHandler:(void(^)(CLKComplicationTimelineEntry * __nullable))handler {
     __block CLKComplicationTemplate *template;
+    __block CLKComplicationTimelineEntry *tle;
     
     NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 1)];
     NSIndexSet *dataIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 8)];
@@ -385,13 +386,20 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
          
          [planetaryHours enumerateObjectsUsingBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour, NSUInteger idx, BOOL * _Nonnull stop) {
              NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHour objectForKey:@(StartDate)] endDate:[planetaryHour objectForKey:@(EndDate)]];
+             NSLog(@"\nDate: %@ and %@ %@ %@\n", [planetaryHour objectForKey:@(StartDate)], [planetaryHour objectForKey:@(EndDate)], ([dateInterval containsDate:[NSDate date]]) ? @"contain" : @"do not contain", [NSDate date]);
+             
              if ([dateInterval containsDate:[NSDate date]])
              {
                  template = templateForComplication(complication.family, planetaryHour);
-                 CLKComplicationTimelineEntry *tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template] ;
-                 handler(tle);
+                 tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template];
+             } else if (idx == hoursIndices.lastIndex && template == nil) {
+                 NSLog(@"idx %d == hourIndices lastIndex %d (%d planetary hours)", idx, hoursIndices.lastIndex, planetaryHours.count);
+                 template = templateForComplication(complication.family, [PlanetaryHourDataSource.data placeholderPlanetaryHourData]);
+                 tle = [CLKComplicationTimelineEntry entryWithDate:[NSDate date] complicationTemplate:template];
              }
          }];
+        
+        handler(tle);
      }
      planetaryHoursCalculationsCompletionBlock:nil
      planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
