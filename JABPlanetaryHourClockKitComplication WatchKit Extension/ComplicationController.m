@@ -371,7 +371,7 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
     __block CLKComplicationTemplate *template;
     __block CLKComplicationTimelineEntry *tle;
     
-    NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 1)];
+    NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 2)];
     NSIndexSet *dataIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 8)];
     NSIndexSet *hoursIndices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 24)];
     [PlanetaryHourDataSource.data
@@ -454,7 +454,9 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
              [planetaryHourTimelineEntries addObject:tle];
          }
      }
-     planetaryHoursCompletionBlock:nil
+     planetaryHoursCompletionBlock:^(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull planetaryHours) {
+        [ExtensionDelegate addNotificationsForPlanetaryHours:planetaryHours];
+    }
      planetaryHoursCalculationsCompletionBlock:nil
      planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
          handler((NSArray<CLKComplicationTimelineEntry *> *)planetaryHourTimelineEntries);

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B90A0A5722AB86ED0025A243 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90A0A5622AB86ED0025A243 /* TabBarController.m */; };
 		B90A0A5A22AB87B90025A243 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90A0A5922AB87B90025A243 /* MapViewController.m */; };
+		B934AADD233C1D2200CFE6CD /* IMG_3095.PNG in Resources */ = {isa = PBXBuildFile; fileRef = B934AADA233C1D2200CFE6CD /* IMG_3095.PNG */; };
+		B934AADE233C1D2200CFE6CD /* IMG_3094.PNG in Resources */ = {isa = PBXBuildFile; fileRef = B934AADB233C1D2200CFE6CD /* IMG_3094.PNG */; };
+		B934AADF233C1D2200CFE6CD /* IMG_3096.PNG in Resources */ = {isa = PBXBuildFile; fileRef = B934AADC233C1D2200CFE6CD /* IMG_3096.PNG */; };
 		B93BC506226E4E7D00BB32B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B93BC505226E4E7D00BB32B7 /* AppDelegate.m */; };
 		B93BC509226E4E7D00BB32B7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93BC508226E4E7D00BB32B7 /* ViewController.m */; };
 		B93BC50C226E4E7D00BB32B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B93BC50A226E4E7D00BB32B7 /* Main.storyboard */; };
@@ -117,6 +120,9 @@
 		B90A0A5622AB86ED0025A243 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		B90A0A5822AB87B90025A243 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		B90A0A5922AB87B90025A243 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
+		B934AADA233C1D2200CFE6CD /* IMG_3095.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IMG_3095.PNG; path = ../../../../../Downloads/IMG_3095.PNG; sourceTree = "<group>"; };
+		B934AADB233C1D2200CFE6CD /* IMG_3094.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IMG_3094.PNG; path = ../../../../../Downloads/IMG_3094.PNG; sourceTree = "<group>"; };
+		B934AADC233C1D2200CFE6CD /* IMG_3096.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IMG_3096.PNG; path = ../../../../../Downloads/IMG_3096.PNG; sourceTree = "<group>"; };
 		B93BC501226E4E7D00BB32B7 /* JABPlanetaryHourClockKitComplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JABPlanetaryHourClockKitComplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93BC504226E4E7D00BB32B7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B93BC505226E4E7D00BB32B7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -177,9 +183,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B934AAD9233C1D0C00CFE6CD /* GitHubRepositoryImages */ = {
+			isa = PBXGroup;
+			children = (
+				B934AADB233C1D2200CFE6CD /* IMG_3094.PNG */,
+				B934AADA233C1D2200CFE6CD /* IMG_3095.PNG */,
+				B934AADC233C1D2200CFE6CD /* IMG_3096.PNG */,
+			);
+			path = GitHubRepositoryImages;
+			sourceTree = "<group>";
+		};
 		B93BC4F8226E4E7D00BB32B7 = {
 			isa = PBXGroup;
 			children = (
+				B934AAD9233C1D0C00CFE6CD /* GitHubRepositoryImages */,
 				B992084422A474C90045BD2C /* JABPlanetaryHourWatchFramework.framework */,
 				B992083422A4730D0045BD2C /* JABPlanetaryHourFrameworks.xcodeproj */,
 				B93BC503226E4E7D00BB32B7 /* JABPlanetaryHourClockKitComplication */,
@@ -382,7 +399,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B934AADD233C1D2200CFE6CD /* IMG_3095.PNG in Resources */,
 				B93BC511226E4E7E00BB32B7 /* LaunchScreen.storyboard in Resources */,
+				B934AADE233C1D2200CFE6CD /* IMG_3094.PNG in Resources */,
+				B934AADF233C1D2200CFE6CD /* IMG_3096.PNG in Resources */,
 				B93BC50E226E4E7E00BB32B7 /* Assets.xcassets in Resources */,
 				B93BC50C226E4E7D00BB32B7 /* Main.storyboard in Resources */,
 			);

@@ -32,6 +32,52 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadComplicationTimeline) name:@"PlanetaryHoursDataSourceUpdatedNotification" object:nil];
 }
 
+- (void)addNotificationsForPlanetaryHours:(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull)planetaryHours
+{
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
+                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted)
+        {
+            [center removeAllDeliveredNotifications];
+            [center removeAllPendingNotificationRequests];
+            
+            UNNotificationCategory* generalCategory = [UNNotificationCategory
+                                                       categoryWithIdentifier:@"PlanetaryHourEvent"
+                                                       actions:@[]
+                                                       intentIdentifiers:@[]
+                                                       options:UNNotificationCategoryOptionCustomDismissAction];
+            
+            // Register the notification categories.
+            [center setNotificationCategories:[NSSet setWithObjects:generalCategory, nil]];
+            
+            [planetaryHours enumerateObjectsUsingBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour, NSUInteger idx, BOOL * _Nonnull stop) {
+                UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+                content.title = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"%@", [planetaryHour objectForKey:@(Symbol)]] arguments:nil];
+                content.subtitle = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"%@", [planetaryHour objectForKey:@(Name)]] arguments:nil];
+                long hour = [(NSNumber *)[planetaryHour objectForKey:@(Hour)] longValue] + 1;
+                NSString *hourString = [NSString stringWithFormat:@"Hour %lu", hour];
+                content.body = [NSString localizedUserNotificationStringForKey:hourString arguments:nil];
+                
+//                UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:FALSE];
+                NSDateComponents *components = [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
+                UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:FALSE];
+                
+                // Create the request object.
+                UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"Planetary Hour Alarm" content:content trigger:trigger];
+                
+                [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+                    if (error != nil) {
+                        NSLog(@"%@", error.localizedDescription);
+                    } else {
+                        NSLog(@"Added %@ %@ %@", request.content.title, request.content.subtitle, request.content.body);
+                    }
+                }];
+            }];
+        }
+    }];
+}
+
 - (void)activateSession
 {
     // WatchKit Connectivity

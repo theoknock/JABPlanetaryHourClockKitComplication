@@ -8,14 +8,16 @@
 
 #import <WatchKit/WatchKit.h>
 #import <WatchConnectivity/WatchConnectivity.h>
+#import <UserNotifications/UserNotifications.h>
 #import <JABPlanetaryHourWatchFramework/JABPlanetaryHourWatchFramework.h>
 
 @interface ExtensionDelegate : NSObject <WKExtensionDelegate, WCSessionDelegate, PlanetaryHourDataSourceLogDelegate>
 
-@property (strong, nonatomic) WCSession *session;
+@property (strong, nonatomic) WCSession * _Nonnull session;
 
-- (void)log:(NSString *)context entry:(NSString *)entry status:(LogEntryType)type;
+- (void)log:(NSString *_Nonnull)context entry:(NSString *_Nonnull)entry status:(LogEntryType)type;
 - (void)reloadComplicationTimeline;
-@property (assign, nonatomic, setter=setReloadingComplicationTimeline:) NSNumber *reloadingComplicationTimeline;
+- (void)addNotificationsForPlanetaryHours:(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull)planetaryHours;
+@property (assign, nonatomic, setter=setReloadingComplicationTimeline:) NSNumber * _Nonnull reloadingComplicationTimeline;
 
 @end
