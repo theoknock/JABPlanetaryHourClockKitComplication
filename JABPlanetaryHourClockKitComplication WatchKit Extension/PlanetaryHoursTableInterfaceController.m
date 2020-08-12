@@ -7,6 +7,7 @@
 //
 
 #import "PlanetaryHoursTableInterfaceController.h"
+#import "ExtensionDelegate.h"
 #import "PlanetaryHourRowController.h"
 #import "MapInterfaceController.h"
 #import <JABPlanetaryHourWatchFramework/JABPlanetaryHourWatchFramework.h>
@@ -65,78 +66,92 @@ void (^updatePlanetaryHoursTable)(__weak WKInterfaceTable *) = ^(__weak WKInterf
                                                             NSString *endDateString             = [endDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(EndDate)]];
                                                             [row.end setText:endDateString];
                                                             
-                                                            //                               if (current)
-                                                            //                                   [table scrollToRowAtIndex:hour];
+                                                        
+                                                            NSTimeInterval endTimeInterval = [(NSDate *)[planetaryHour objectForKey:@(EndDate)] timeIntervalSinceDate:[NSDate date]];
+                                                            NSTimeInterval startTimeInterval = [(NSDate *)[planetaryHour objectForKey:@(StartDate)] timeIntervalSinceDate:[NSDate date]];
+                                                            
+//                                                            [ExtensionDelegate log:@"Planetary Hour Date/Time" entry:[NSString stringWithFormat:@"\tStart:\t\t%f\n\tEnd:\t\t\t%f\n\tNow:\t\t\t%f", startTimeInterval, endTimeInterval, currentTimeInterval] status:LogEntryTypeDebug];
+                                                            
+                                                            if (startTimeInterval < 0 && endTimeInterval > 0)
+                                                            {
+                                                            
+//                                                            if (![dateInterval containsDate:[NSDate date]])
+                                                               [table scrollToRowAtIndex:(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue]];
+                                                            
+                                                                [ExtensionDelegate log:@"Planetary Hour Date/Time" entry:[NSString stringWithFormat:@"\tStart:\t\t%f\n\tEnd:\t\t\t%f\n", startTimeInterval, endTimeInterval] status:LogEntryTypeDebug];
+                                                            }
                                                         });
-    } planetaryHoursCompletionBlock:nil
+        
+    }
+                       planetaryHoursCompletionBlock:nil
               planetaryHourDataSourceCompletionBlock:nil];
     
-//    [PlanetaryHourDataSource.data solarCyclesForDays:daysIndices planetaryHourData:dataIndices planetaryHours:daysIndices
-//                           solarCycleCompletionBlock:nil
-//                        planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
-//                                                        dispatch_async(dispatch_get_main_queue(), ^{
-//                                                            PlanetaryHourRowController* row = (PlanetaryHourRowController *)[table rowControllerAtIndex:(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue]];
-//                                                            [row.symbol setAttributedText:(NSAttributedString *)[planetaryHour objectForKey:@(Symbol)]];
-//                                                            [row.planet setText:(NSString *)[planetaryHour objectForKey:@(Name)]];
-//                                                            [row.hour setText:[NSString stringWithFormat:@"%ld", (long)(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] + 1]];
-//                                                            [row.hour setTextColor:(UIColor *)[planetaryHour objectForKey:@(Color)]]; // ((NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] < 12) ? [UIColor yellowColor] : [UIColor blueColor]];
-//                                                            NSDateFormatter *dateFormatter      = [[NSDateFormatter alloc] init];
-//                                                            dateFormatter.dateStyle             = NSDateFormatterShortStyle;
-//                                                            NSString *dateString                = [dateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
-//                                                            [row.date setText:dateString];
-//                                                            
-//                                                            NSDateFormatter *startDateFormatter = [[NSDateFormatter alloc] init];
-//                                                            startDateFormatter.timeStyle        = NSDateFormatterShortStyle;
-//                                                            NSString *startDateString           = [startDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
-//                                                            [row.start setText:startDateString];
-//                                                            
-//                                                            NSDateFormatter *endDateFormatter   = [[NSDateFormatter alloc] init];
-//                                                            endDateFormatter.timeStyle          = NSDateFormatterShortStyle;
-//                                                            NSString *endDateString             = [endDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(EndDate)]];
-//                                                            [row.end setText:endDateString];
-//                                                            
-//                                                            //                               if (current)
-//                                                            //                                   [table scrollToRowAtIndex:hour];
-//                                                        });
-//
-//    } planetaryHoursCompletionBlock:nil
-//              planetaryHourDataSourceCompletionBlock:nil];
+    //    [PlanetaryHourDataSource.data solarCyclesForDays:daysIndices planetaryHourData:dataIndices planetaryHours:daysIndices
+    //                           solarCycleCompletionBlock:nil
+    //                        planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
+    //                                                        dispatch_async(dispatch_get_main_queue(), ^{
+    //                                                            PlanetaryHourRowController* row = (PlanetaryHourRowController *)[table rowControllerAtIndex:(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue]];
+    //                                                            [row.symbol setAttributedText:(NSAttributedString *)[planetaryHour objectForKey:@(Symbol)]];
+    //                                                            [row.planet setText:(NSString *)[planetaryHour objectForKey:@(Name)]];
+    //                                                            [row.hour setText:[NSString stringWithFormat:@"%ld", (long)(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] + 1]];
+    //                                                            [row.hour setTextColor:(UIColor *)[planetaryHour objectForKey:@(Color)]]; // ((NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] < 12) ? [UIColor yellowColor] : [UIColor blueColor]];
+    //                                                            NSDateFormatter *dateFormatter      = [[NSDateFormatter alloc] init];
+    //                                                            dateFormatter.dateStyle             = NSDateFormatterShortStyle;
+    //                                                            NSString *dateString                = [dateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
+    //                                                            [row.date setText:dateString];
+    //
+    //                                                            NSDateFormatter *startDateFormatter = [[NSDateFormatter alloc] init];
+    //                                                            startDateFormatter.timeStyle        = NSDateFormatterShortStyle;
+    //                                                            NSString *startDateString           = [startDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
+    //                                                            [row.start setText:startDateString];
+    //
+    //                                                            NSDateFormatter *endDateFormatter   = [[NSDateFormatter alloc] init];
+    //                                                            endDateFormatter.timeStyle          = NSDateFormatterShortStyle;
+    //                                                            NSString *endDateString             = [endDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(EndDate)]];
+    //                                                            [row.end setText:endDateString];
+    //
+    //                                                            //                               if (current)
+    //                                                            //                                   [table scrollToRowAtIndex:hour];
+    //                                                        });
+    //
+    //    } planetaryHoursCompletionBlock:nil
+    //              planetaryHourDataSourceCompletionBlock:nil];
     
-//    [PlanetaryHourDataSource.data
-//     solarCyclesForDays:daysIndices
-//     planetaryHourData:dataIndices
-//     planetaryHours:hoursIndices
-//     planetaryHourDataSourceStartCompletionBlock:nil
-//     solarCycleCompletionBlock:nil
-//     planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
-//         dispatch_async(dispatch_get_main_queue(), ^{
-//             PlanetaryHourRowController* row = (PlanetaryHourRowController *)[table rowControllerAtIndex:(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue]];
-//             [row.symbol setAttributedText:(NSAttributedString *)[planetaryHour objectForKey:@(Symbol)]];
-//             [row.planet setText:(NSString *)[planetaryHour objectForKey:@(Name)]];
-//             [row.hour setText:[NSString stringWithFormat:@"%ld", (long)(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] + 1]];
-//             [row.hour setTextColor:(UIColor *)[planetaryHour objectForKey:@(Color)]]; // ((NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] < 12) ? [UIColor yellowColor] : [UIColor blueColor]];
-//             NSDateFormatter *dateFormatter      = [[NSDateFormatter alloc] init];
-//             dateFormatter.dateStyle             = NSDateFormatterShortStyle;
-//             NSString *dateString                = [dateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
-//             [row.date setText:dateString];
-//
-//             NSDateFormatter *startDateFormatter = [[NSDateFormatter alloc] init];
-//             startDateFormatter.timeStyle        = NSDateFormatterShortStyle;
-//             NSString *startDateString           = [startDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
-//             [row.start setText:startDateString];
-//
-//             NSDateFormatter *endDateFormatter   = [[NSDateFormatter alloc] init];
-//             endDateFormatter.timeStyle          = NSDateFormatterShortStyle;
-//             NSString *endDateString             = [endDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(EndDate)]];
-//             [row.end setText:endDateString];
-//
-//             //                               if (current)
-//             //                                   [table scrollToRowAtIndex:hour];
-//         });
-//     }
-//     planetaryHoursCompletionBlock:nil
-//     planetaryHoursCalculationsCompletionBlock:nil
-//     planetaryHourDataSourceCompletionBlock:nil];
+    //    [PlanetaryHourDataSource.data
+    //     solarCyclesForDays:daysIndices
+    //     planetaryHourData:dataIndices
+    //     planetaryHours:hoursIndices
+    //     planetaryHourDataSourceStartCompletionBlock:nil
+    //     solarCycleCompletionBlock:nil
+    //     planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
+    //         dispatch_async(dispatch_get_main_queue(), ^{
+    //             PlanetaryHourRowController* row = (PlanetaryHourRowController *)[table rowControllerAtIndex:(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue]];
+    //             [row.symbol setAttributedText:(NSAttributedString *)[planetaryHour objectForKey:@(Symbol)]];
+    //             [row.planet setText:(NSString *)[planetaryHour objectForKey:@(Name)]];
+    //             [row.hour setText:[NSString stringWithFormat:@"%ld", (long)(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] + 1]];
+    //             [row.hour setTextColor:(UIColor *)[planetaryHour objectForKey:@(Color)]]; // ((NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] < 12) ? [UIColor yellowColor] : [UIColor blueColor]];
+    //             NSDateFormatter *dateFormatter      = [[NSDateFormatter alloc] init];
+    //             dateFormatter.dateStyle             = NSDateFormatterShortStyle;
+    //             NSString *dateString                = [dateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
+    //             [row.date setText:dateString];
+    //
+    //             NSDateFormatter *startDateFormatter = [[NSDateFormatter alloc] init];
+    //             startDateFormatter.timeStyle        = NSDateFormatterShortStyle;
+    //             NSString *startDateString           = [startDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
+    //             [row.start setText:startDateString];
+    //
+    //             NSDateFormatter *endDateFormatter   = [[NSDateFormatter alloc] init];
+    //             endDateFormatter.timeStyle          = NSDateFormatterShortStyle;
+    //             NSString *endDateString             = [endDateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(EndDate)]];
+    //             [row.end setText:endDateString];
+    //
+    //             //                               if (current)
+    //             //                                   [table scrollToRowAtIndex:hour];
+    //         });
+    //     }
+    //     planetaryHoursCompletionBlock:nil
+    //     planetaryHoursCalculationsCompletionBlock:nil
+    //     planetaryHourDataSourceCompletionBlock:nil];
 };
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex
