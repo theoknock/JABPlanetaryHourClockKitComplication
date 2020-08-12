@@ -56,10 +56,8 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "JABPlanetaryHourClockKitComplication WatchKit Extension/PushNotificationPayload.apns">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/JABPlanetaryHourClockKitComplication WatchKit App">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B93BC516226E4E7E00BB32B7"
@@ -67,7 +65,7 @@
             BlueprintName = "JABPlanetaryHourClockKitComplication WatchKit App"
             ReferencedContainer = "container:JABPlanetaryHourClockKitComplication.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -77,10 +75,8 @@
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "JABPlanetaryHourClockKitComplication WatchKit Extension/PushNotificationPayload.apns">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/JABPlanetaryHourClockKitComplication WatchKit App">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B93BC516226E4E7E00BB32B7"
@@ -88,16 +84,7 @@
             BlueprintName = "JABPlanetaryHourClockKitComplication WatchKit App"
             ReferencedContainer = "container:JABPlanetaryHourClockKitComplication.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B93BC516226E4E7E00BB32B7"
-            BuildableName = "JABPlanetaryHourClockKitComplication WatchKit App.app"
-            BlueprintName = "JABPlanetaryHourClockKitComplication WatchKit App"
-            ReferencedContainer = "container:JABPlanetaryHourClockKitComplication.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -30,6 +30,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadComplicationTimeline) name:CLKComplicationServerActiveComplicationsDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadComplicationTimeline) name:@"PlanetaryHoursDataSourceUpdatedNotification" object:nil];
+    
+    printf("%s", __PRETTY_FUNCTION__);
 }
 
 - (void)addNotificationsForPlanetaryHours:(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull)planetaryHours

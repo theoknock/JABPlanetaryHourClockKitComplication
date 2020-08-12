@@ -16,13 +16,17 @@
 @implementation MapInterfaceController
 
 - (void)awakeWithContext:(id)context {
+    printf("%s", __PRETTY_FUNCTION__);
+    
     [super awakeWithContext:context];
     
     NSLog(@"Selected row: %ld", (long)((NSNumber *)context).integerValue);
     
     // Configure interface objects here.
     [self.map removeAllAnnotations];
-    [self.map addAnnotation:PlanetaryHourDataSource.data.locationManager.location.coordinate withPinColor:WKInterfaceMapPinColorPurple];
+    
+//    CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake(PlanetaryHourDataSource.data.locationManager.location.coordinate.latitude, PlanetaryHourDataSource.data.locationManager.location.coordinate.longitude);
+    [self.map addAnnotation:CLLocationCoordinate2DMake(PlanetaryHourDataSource.data.locationManager.location.coordinate.latitude, PlanetaryHourDataSource.data.locationManager.location.coordinate.longitude) withPinColor:WKInterfaceMapPinColorPurple];
     
     NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 1)];
     NSIndexSet *dataIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 11)];
@@ -32,38 +36,38 @@
                            solarCycleCompletionBlock:nil
                         planetaryHourCompletionBlock:nil
                        planetaryHoursCompletionBlock:^(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull planetaryHours) {
-//        __block BOOL didAddAnnotation = FALSE;
+        __block BOOL didAddAnnotation = FALSE;
         
-//            [planetaryHours enumerateObjectsUsingBlock:^(NSDictionary<NSNumber *,id> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                                                        NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHours[idx] objectForKey:@(StartDate)] endDate:[planetaryHours[idx] objectForKey:@(EndDate)]];
-//                                                        if ([dateInterval containsDate:[NSDate date]])
-//                                                        {
-//                                                            [self.map addAnnotation:PlanetaryHourDataSource.data.locationManager.location.coordinate withPinColor:WKInterfaceMapPinColorPurple];
-//                                                            CGPoint offset = CGPointMake(0.0, 0.0);
-//                                                            [self.map addAnnotation:[(CLLocation *)[planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Symbol)] string], [planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Color)], 14.0) centerOffset:offset];
-//                                                            [self.map addAnnotation:[(CLLocation *)[planetaryHours[idx] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[idx] objectForKey:@(Symbol)] string], [planetaryHours[idx] objectForKey:@(Color)], 14.0) centerOffset:offset];
-//                                                            [self.map addAnnotation:[(CLLocation *)[planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(CurrentCoordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(Symbol)] string], [planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(Color)], 14.0) centerOffset:offset];
-//
-//                                                            MKMapRect zoomRect = MKMapRectNull;
-//                                                            for (int location = -1; location < 2; location++) {
-//                                                                MKMapPoint annotationPoint = MKMapPointForCoordinate([(CLLocation *)[planetaryHours[((idx + location) < 24) ? idx + location : idx] objectForKey:@(CurrentCoordinate)] coordinate]);
-//                                                                MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
-//                                                                if (MKMapRectIsNull(zoomRect)) {
-//                                                                    zoomRect = pointRect;
-//                                                                } else {
-//                                                                    zoomRect = MKMapRectUnion(zoomRect, pointRect);
-//                                                                }
-//                                                            }
-//
-//                                                            // add padding here
-//                                                            [self.map setVisibleMapRect:zoomRect];
-//
-//
-//                                                            didAddAnnotation = TRUE;
-//                                                            *stop = YES;
-//                                                        }
-//                                                    if (didAddAnnotation) *stop = YES;
-//                                                    }];
+            [planetaryHours enumerateObjectsUsingBlock:^(NSDictionary<NSNumber *,id> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                                        NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHours[idx] objectForKey:@(StartDate)] endDate:[planetaryHours[idx] objectForKey:@(EndDate)]];
+                                                        if ([dateInterval containsDate:[NSDate date]])
+                                                        {
+                                                            [self.map addAnnotation:PlanetaryHourDataSource.data.locationManager.location.coordinate withPinColor:WKInterfaceMapPinColorRed];
+                                                            CGPoint offset = CGPointMake(0.0, 0.0);
+                                                            [self.map addAnnotation:[(CLLocation *)[planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Coordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Symbol)] string], [planetaryHours[((idx + 1) < 24) ? idx + 1 : idx] objectForKey:@(Color)], 14.0) centerOffset:offset];
+                                                            [self.map addAnnotation:[(CLLocation *)[planetaryHours[idx] objectForKey:@(Coordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[idx] objectForKey:@(Symbol)] string], [planetaryHours[idx] objectForKey:@(Color)], 14.0) centerOffset:offset];
+                                                            [self.map addAnnotation:[(CLLocation *)[planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(Coordinate)] coordinate] withImage:PlanetaryHourDataSource.data.imageFromText([[planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(Symbol)] string], [planetaryHours[(idx == 0) ? idx : idx - 1] objectForKey:@(Color)], 14.0) centerOffset:offset];
+
+                                                            MKMapRect zoomRect = MKMapRectNull;
+                                                            for (int location = -1; location < 2; location++) {
+                                                                MKMapPoint annotationPoint = MKMapPointForCoordinate([(CLLocation *)[planetaryHours[((idx + location) < 24) ? idx + location : idx] objectForKey:@(Coordinate)] coordinate]);
+                                                                MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
+                                                                if (MKMapRectIsNull(zoomRect)) {
+                                                                    zoomRect = pointRect;
+                                                                } else {
+                                                                    zoomRect = MKMapRectUnion(zoomRect, pointRect);
+                                                                }
+                                                            }
+
+                                                            // add padding here
+                                                            [self.map setVisibleMapRect:zoomRect];
+
+
+                                                            didAddAnnotation = TRUE;
+                                                            *stop = YES;
+                                                        }
+                                                    if (didAddAnnotation) *stop = YES;
+                                                    }];
     } planetaryHourDataSourceCompletionBlock:nil];
     
     
