@@ -56,6 +56,13 @@
 			remoteGlobalIDString = B93BC525226E4E7F00BB32B7;
 			remoteInfo = "JABPlanetaryHourClockKitComplication WatchKit Extension";
 		};
+		B989AD4124E3841C00981687 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B989AD3D24E3841B00981687 /* JABPlanetaryHourWatchFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B93BC4D2226E483000BB32B7;
+			remoteInfo = JABPlanetaryHourWatchFramework;
+		};
 		B992083E22A473360045BD2C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B992083422A4730D0045BD2C /* JABPlanetaryHourFrameworks.xcodeproj */;
@@ -145,6 +152,8 @@
 		B93BC53A226E4E8000BB32B7 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		B9561B2623305E490022D810 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.0.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		B9561B2823305E5E0022D810 /* JABPlanetaryHourClockKitComplication WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "JABPlanetaryHourClockKitComplication WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		B989AD3D24E3841B00981687 /* JABPlanetaryHourWatchFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JABPlanetaryHourWatchFramework.xcodeproj; path = "../../Documents/JABPlanetaryHour ƒ/JABPlanetaryHourFrameworks/JABPlanetaryHourWatchFramework/JABPlanetaryHourWatchFramework.xcodeproj"; sourceTree = "<group>"; };
+		B989AD4324E3841C00981687 /* JABPlanetaryHourFrameworks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JABPlanetaryHourFrameworks.xcodeproj; path = "../../Documents/JABPlanetaryHour ƒ/JABPlanetaryHourFrameworks/JABPlanetaryHourFrameworks.xcodeproj"; sourceTree = "<group>"; };
 		B992083422A4730D0045BD2C /* JABPlanetaryHourFrameworks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JABPlanetaryHourFrameworks.xcodeproj; path = ../../JABPlanetaryHourFrameworks/JABPlanetaryHourFrameworks.xcodeproj; sourceTree = "<group>"; };
 		B992084022A4742F0045BD2C /* JABPlanetaryHourCocoaTouchFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JABPlanetaryHourCocoaTouchFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B992084422A474C90045BD2C /* JABPlanetaryHourWatchFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JABPlanetaryHourWatchFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +189,8 @@
 		B93BC4F8226E4E7D00BB32B7 = {
 			isa = PBXGroup;
 			children = (
+				B989AD4324E3841C00981687 /* JABPlanetaryHourFrameworks.xcodeproj */,
+				B989AD3D24E3841B00981687 /* JABPlanetaryHourWatchFramework.xcodeproj */,
 				B992084422A474C90045BD2C /* JABPlanetaryHourWatchFramework.framework */,
 				B992083422A4730D0045BD2C /* JABPlanetaryHourFrameworks.xcodeproj */,
 				B93BC503226E4E7D00BB32B7 /* JABPlanetaryHourClockKitComplication */,
@@ -264,6 +275,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B989AD3E24E3841B00981687 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B989AD4224E3841C00981687 /* JABPlanetaryHourWatchFramework.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B989AD4424E3841C00981687 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B992083522A4730D0045BD2C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,7 +363,7 @@
 		B93BC4F9226E4E7D00BB32B7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "The Life of a Demoniac";
 				TargetAttributes = {
 					B93BC500226E4E7D00BB32B7 = {
@@ -367,6 +393,14 @@
 					ProductGroup = B992083522A4730D0045BD2C /* Products */;
 					ProjectRef = B992083422A4730D0045BD2C /* JABPlanetaryHourFrameworks.xcodeproj */;
 				},
+				{
+					ProductGroup = B989AD4424E3841C00981687 /* Products */;
+					ProjectRef = B989AD4324E3841C00981687 /* JABPlanetaryHourFrameworks.xcodeproj */;
+				},
+				{
+					ProductGroup = B989AD3E24E3841B00981687 /* Products */;
+					ProjectRef = B989AD3D24E3841B00981687 /* JABPlanetaryHourWatchFramework.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -376,6 +410,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B989AD4224E3841C00981687 /* JABPlanetaryHourWatchFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JABPlanetaryHourWatchFramework.framework;
+			remoteRef = B989AD4124E3841C00981687 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B93BC4FF226E4E7D00BB32B7 /* Resources */ = {
@@ -513,6 +557,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -538,7 +583,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -572,6 +617,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -591,7 +637,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

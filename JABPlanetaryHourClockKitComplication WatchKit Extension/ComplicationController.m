@@ -374,40 +374,71 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
     NSIndexSet *daysIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 1)];
     NSIndexSet *dataIndices  = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 8)];
     NSIndexSet *hoursIndices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 24)];
-    [PlanetaryHourDataSource.data
-     solarCyclesForDays:daysIndices
-     planetaryHourData:dataIndices
-     planetaryHours:hoursIndices
-     planetaryHourDataSourceStartCompletionBlock:nil
-     solarCycleCompletionBlock:nil
-     planetaryHourCompletionBlock:nil
-     planetaryHoursCompletionBlock:^(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull planetaryHours) {
-         [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Getting current timeline entry for complication: %@", complication.description] status:LogEntryTypeOperation];
-         
-         [planetaryHours enumerateObjectsUsingBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour, NSUInteger idx, BOOL * _Nonnull stop) {
-             NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHour objectForKey:@(StartDate)] endDate:[planetaryHour objectForKey:@(EndDate)]];
-             NSLog(@"\nDate: %@ and %@ %@ %@\n", [planetaryHour objectForKey:@(StartDate)], [planetaryHour objectForKey:@(EndDate)], ([dateInterval containsDate:[NSDate date]]) ? @"contain" : @"do not contain", [NSDate date]);
-             
-             if ([dateInterval containsDate:[NSDate date]])
-             {
-                 template = templateForComplication(complication.family, planetaryHour);
-                 tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template];
-             } else if (idx == hoursIndices.lastIndex && template == nil) {
-                 NSLog(@"idx %d == hourIndices lastIndex %d (%d planetary hours)", idx, hoursIndices.lastIndex, planetaryHours.count);
-                 template = templateForComplication(complication.family, [PlanetaryHourDataSource.data placeholderPlanetaryHourData]);
-                 tle = [CLKComplicationTimelineEntry entryWithDate:[NSDate date] complicationTemplate:template];
-             }
-         }];
+    
+    [PlanetaryHourDataSource.data solarCyclesForDays:daysIndices planetaryHourData:dataIndices planetaryHours:hoursIndices
+                           solarCycleCompletionBlock:nil
+                        planetaryHourCompletionBlock:nil
+                       planetaryHoursCompletionBlock:^(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull planetaryHours) {
+        [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Getting current timeline entry for complication: %@", complication.description] status:LogEntryTypeOperation];
+        
+        [planetaryHours enumerateObjectsUsingBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHour objectForKey:@(StartDate)] endDate:[planetaryHour objectForKey:@(EndDate)]];
+            NSLog(@"\nDate: %@ and %@ %@ %@\n", [planetaryHour objectForKey:@(StartDate)], [planetaryHour objectForKey:@(EndDate)], ([dateInterval containsDate:[NSDate date]]) ? @"contain" : @"do not contain", [NSDate date]);
+            
+            if ([dateInterval containsDate:[NSDate date]])
+            {
+                template = templateForComplication(complication.family, planetaryHour);
+                tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template];
+            } else if (idx == hoursIndices.lastIndex && template == nil) {
+                NSLog(@"idx %d == hourIndices lastIndex %d (%d planetary hours)", idx, hoursIndices.lastIndex, planetaryHours.count);
+                template = templateForComplication(complication.family, [PlanetaryHourDataSource.data placeholderPlanetaryHourData]);
+                tle = [CLKComplicationTimelineEntry entryWithDate:[NSDate date] complicationTemplate:template];
+            }
+        }];
         
         handler(tle);
-     }
-     planetaryHoursCalculationsCompletionBlock:nil
-     planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
-         if (error)
-             [ExtensionDelegate log:@"JABPlanetaryHourWatchFramework" entry:[NSString stringWithFormat:@"Error calculating planetary hours: %@", error] status:LogEntryTypeError];
-         else
-             [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Retrieved current timeline entry for complication: %@", complication.description] status:LogEntryTypeSuccess];
-     }];
+        
+    } planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
+        if (error)
+            [ExtensionDelegate log:@"JABPlanetaryHourWatchFramework" entry:[NSString stringWithFormat:@"Error calculating planetary hours: %@", error] status:LogEntryTypeError];
+        else
+            [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Retrieved current timeline entry for complication: %@", complication.description] status:LogEntryTypeSuccess];
+    }];
+    
+    //    [PlanetaryHourDataSource.data
+    //     solarCyclesForDays:daysIndices
+    //     planetaryHourData:dataIndices
+    //     planetaryHours:hoursIndices
+    //     planetaryHourDataSourceStartCompletionBlock:nil
+    //     solarCycleCompletionBlock:nil
+    //     planetaryHourCompletionBlock:nil
+    //     planetaryHoursCompletionBlock:^(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull planetaryHours) {
+    //         [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Getting current timeline entry for complication: %@", complication.description] status:LogEntryTypeOperation];
+    //
+    //         [planetaryHours enumerateObjectsUsingBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour, NSUInteger idx, BOOL * _Nonnull stop) {
+    //             NSDateInterval *dateInterval = [[NSDateInterval alloc] initWithStartDate:[planetaryHour objectForKey:@(StartDate)] endDate:[planetaryHour objectForKey:@(EndDate)]];
+    //             NSLog(@"\nDate: %@ and %@ %@ %@\n", [planetaryHour objectForKey:@(StartDate)], [planetaryHour objectForKey:@(EndDate)], ([dateInterval containsDate:[NSDate date]]) ? @"contain" : @"do not contain", [NSDate date]);
+    //
+    //             if ([dateInterval containsDate:[NSDate date]])
+    //             {
+    //                 template = templateForComplication(complication.family, planetaryHour);
+    //                 tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template];
+    //             } else if (idx == hoursIndices.lastIndex && template == nil) {
+    //                 NSLog(@"idx %d == hourIndices lastIndex %d (%d planetary hours)", idx, hoursIndices.lastIndex, planetaryHours.count);
+    //                 template = templateForComplication(complication.family, [PlanetaryHourDataSource.data placeholderPlanetaryHourData]);
+    //                 tle = [CLKComplicationTimelineEntry entryWithDate:[NSDate date] complicationTemplate:template];
+    //             }
+    //         }];
+    //
+    //        handler(tle);
+    //     }
+    //     planetaryHoursCalculationsCompletionBlock:nil
+    //     planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
+    //         if (error)
+    //             [ExtensionDelegate log:@"JABPlanetaryHourWatchFramework" entry:[NSString stringWithFormat:@"Error calculating planetary hours: %@", error] status:LogEntryTypeError];
+    //         else
+    //             [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Retrieved current timeline entry for complication: %@", complication.description] status:LogEntryTypeSuccess];
+    //     }];
 }
 
 - (void)getTimelineEntriesForComplication:(CLKComplication *)complication beforeDate:(NSDate *)date limit:(NSUInteger)limit withHandler:(void(^)(NSArray<CLKComplicationTimelineEntry *> * __nullable entries))handler {
@@ -437,38 +468,63 @@ CLKComplicationTemplate *(^templateForComplication)(CLKComplicationFamily, NSDic
     NSMutableIndexSet *dataIndices  = [[NSMutableIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 4)];
     [dataIndices addIndexesInRange:NSMakeRange(5, 2)];
     NSIndexSet *hoursIndices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, 24)];
-    [PlanetaryHourDataSource.data
-     solarCyclesForDays:daysIndices
-     planetaryHourData:dataIndices
-     planetaryHours:hoursIndices
-     planetaryHourDataSourceStartCompletionBlock:^{
-         [ExtensionDelegate setReloadingComplicationTimeline:[NSNumber numberWithBool:TRUE]];
-     }
-     solarCycleCompletionBlock:nil
-     planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
-         if (numberOfHours < limit)
-         {
-             numberOfHours++;
-             CLKComplicationTemplate *template = templateForComplication(complication.family, planetaryHour);
-             CLKComplicationTimelineEntry *tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template];
-             [planetaryHourTimelineEntries addObject:tle];
-         }
-     }
-     planetaryHoursCompletionBlock:^(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull planetaryHours) {
-        [ExtensionDelegate addNotificationsForPlanetaryHours:planetaryHours];
-    }
-     planetaryHoursCalculationsCompletionBlock:nil
-     planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
-         handler((NSArray<CLKComplicationTimelineEntry *> *)planetaryHourTimelineEntries);
-         if (error)
-         {
-             [ExtensionDelegate log:@"JABPlanetaryHourWatchFramework" entry:[NSString stringWithFormat:@"Error calculating planetary hours: %@", error] status:LogEntryTypeError];
-         } else {
-             [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Retrieved %d timeline entries for complication: %@", planetaryHourTimelineEntries.count, complication.description] status:LogEntryTypeSuccess];
-         }
-         
-         [ExtensionDelegate setReloadingComplicationTimeline:[NSNumber numberWithBool:FALSE]];
-     }];
+    
+    
+    [PlanetaryHourDataSource.data solarCyclesForDays:daysIndices planetaryHourData:dataIndices planetaryHours:hoursIndices
+                           solarCycleCompletionBlock:nil
+                        planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
+        if (numberOfHours < limit)
+        {
+            numberOfHours++;
+            CLKComplicationTemplate *template = templateForComplication(complication.family, planetaryHour);
+            CLKComplicationTimelineEntry *tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template];
+            [planetaryHourTimelineEntries addObject:tle];
+        }
+    } planetaryHoursCompletionBlock:nil
+              planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
+        handler((NSArray<CLKComplicationTimelineEntry *> *)planetaryHourTimelineEntries);
+        if (error)
+        {
+            [ExtensionDelegate log:@"JABPlanetaryHourWatchFramework" entry:[NSString stringWithFormat:@"Error calculating planetary hours: %@", error] status:LogEntryTypeError];
+        } else {
+            [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Retrieved %d timeline entries for complication: %@", planetaryHourTimelineEntries.count, complication.description] status:LogEntryTypeSuccess];
+        }
+        
+        [ExtensionDelegate setReloadingComplicationTimeline:[NSNumber numberWithBool:FALSE]];
+    }];
+    
+    //    [PlanetaryHourDataSource.data
+    //     solarCyclesForDays:daysIndices
+    //     planetaryHourData:dataIndices
+    //     planetaryHours:hoursIndices
+    //     planetaryHourDataSourceStartCompletionBlock:^{
+    //         [ExtensionDelegate setReloadingComplicationTimeline:[NSNumber numberWithBool:TRUE]];
+    //     }
+    //     solarCycleCompletionBlock:nil
+    //     planetaryHourCompletionBlock:^(NSDictionary<NSNumber *,id> * _Nonnull planetaryHour) {
+    //         if (numberOfHours < limit)
+    //         {
+    //             numberOfHours++;
+    //             CLKComplicationTemplate *template = templateForComplication(complication.family, planetaryHour);
+    //             CLKComplicationTimelineEntry *tle = [CLKComplicationTimelineEntry entryWithDate:[planetaryHour objectForKey:@(StartDate)] complicationTemplate:template];
+    //             [planetaryHourTimelineEntries addObject:tle];
+    //         }
+    //     }
+    //     planetaryHoursCompletionBlock:^(NSArray<NSDictionary<NSNumber *,id> *> * _Nonnull planetaryHours) {
+    //        [ExtensionDelegate addNotificationsForPlanetaryHours:planetaryHours];
+    //    }
+    //     planetaryHoursCalculationsCompletionBlock:nil
+    //     planetaryHourDataSourceCompletionBlock:^(NSError * _Nullable error) {
+    //         handler((NSArray<CLKComplicationTimelineEntry *> *)planetaryHourTimelineEntries);
+    //         if (error)
+    //         {
+    //             [ExtensionDelegate log:@"JABPlanetaryHourWatchFramework" entry:[NSString stringWithFormat:@"Error calculating planetary hours: %@", error] status:LogEntryTypeError];
+    //         } else {
+    //             [ExtensionDelegate log:@"ClockKit Complication" entry:[NSString stringWithFormat:@"Retrieved %d timeline entries for complication: %@", planetaryHourTimelineEntries.count, complication.description] status:LogEntryTypeSuccess];
+    //         }
+    //
+    //         [ExtensionDelegate setReloadingComplicationTimeline:[NSNumber numberWithBool:FALSE]];
+    //     }];
 }
 
 #pragma mark - Placeholder Templates

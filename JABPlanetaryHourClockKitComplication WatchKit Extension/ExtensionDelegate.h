@@ -6,6 +6,7 @@
 //  Copyright © 2019 The Life of a Demoniac. All rights reserved.
 //
 
+#import <ClockKit/ClockKit.h>
 #import <WatchKit/WatchKit.h>
 #import <WatchConnectivity/WatchConnectivity.h>
 #import <UserNotifications/UserNotifications.h>

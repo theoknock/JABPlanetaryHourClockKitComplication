@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1100"
+   LastUpgradeVersion = "1200"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -41,15 +41,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B93BC516226E4E7E00BB32B7"
-            BuildableName = "JABPlanetaryHourClockKitComplication WatchKit App.app"
-            BlueprintName = "JABPlanetaryHourClockKitComplication WatchKit App"
-            ReferencedContainer = "container:JABPlanetaryHourClockKitComplication.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
