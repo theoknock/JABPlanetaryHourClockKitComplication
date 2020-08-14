@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PlanetaryHourRowController : NSObject
 
+@property (weak, nonatomic) IBOutlet WKInterfaceGroup *planetaryHourDataRow;
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel *hour;
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel *symbol;
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel *planet;

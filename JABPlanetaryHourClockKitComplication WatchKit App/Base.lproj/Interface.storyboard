@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14810.12" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17147" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
     <device id="watch44"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.15"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14619.8"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17032"/>
     </dependencies>
     <scenes>
         <!--MapInterfaceController-->
@@ -29,7 +29,7 @@
                         <table alignment="center" verticalAlignment="center" pagingScroll="YES" id="7WH-Lw-LYb">
                             <items>
                                 <tableRow identifier="PlanetaryHoursTableRow" id="yuu-sr-nLx" customClass="PlanetaryHourRowController">
-                                    <group key="rootItem" width="1" height="1" alignment="left" animationDuration="1" layout="overlap" id="F5O-HA-3NG">
+                                    <group key="rootItem" width="1" height="1" alignment="left" animationDuration="1" layout="overlap" radius="21" id="F5O-HA-3NG">
                                         <items>
                                             <group alignment="center" verticalAlignment="center" contentMode="center" layout="vertical" id="kcA-un-GE4">
                                                 <items>
@@ -75,6 +75,7 @@
                                         <outlet property="end" destination="wfu-MD-VH8" id="EQM-XX-uFz"/>
                                         <outlet property="hour" destination="bB1-Du-b2i" id="hdL-zh-cV6"/>
                                         <outlet property="planet" destination="gd0-gz-3rf" id="FCa-71-dOq"/>
+                                        <outlet property="planetaryHourDataRow" destination="F5O-HA-3NG" id="cVR-aa-mO1"/>
                                         <outlet property="start" destination="UI9-HR-kSc" id="CE1-4P-Tzp"/>
                                         <outlet property="symbol" destination="Yk4-cv-v7D" id="ZNZ-yn-VMx"/>
                                     </connections>

@@ -14,9 +14,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MapInterfaceController : WKInterfaceController
+@interface MapInterfaceController : WKInterfaceController <WKCrownDelegate>
 
 @property (weak, nonatomic) IBOutlet WKInterfaceMap *map;
+
+@property (class) NSInteger centerHour;
+@property (class) MKCoordinateSpan coordinateSpan;
+@property (class) CLLocationCoordinate2D centerCoordinate;
 
 @end
 

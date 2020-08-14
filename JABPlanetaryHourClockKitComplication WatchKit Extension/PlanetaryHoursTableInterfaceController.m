@@ -50,7 +50,8 @@ void (^updatePlanetaryHoursTable)(__weak WKInterfaceTable *) = ^(__weak WKInterf
                                                             [row.symbol setAttributedText:(NSAttributedString *)[planetaryHour objectForKey:@(Symbol)]];
                                                             [row.planet setText:(NSString *)[planetaryHour objectForKey:@(Name)]];
                                                             [row.hour setText:[NSString stringWithFormat:@"%ld", (long)(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] + 1]];
-                                                            [row.hour setTextColor:(UIColor *)[planetaryHour objectForKey:@(Color)]]; // ((NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue] < 12) ? [UIColor yellowColor] : [UIColor blueColor]];
+                                                            [row.hour setTextColor:(UIColor *)[planetaryHour objectForKey:@(Color)]];
+                                                            
                                                             NSDateFormatter *dateFormatter      = [[NSDateFormatter alloc] init];
                                                             dateFormatter.dateStyle             = NSDateFormatterShortStyle;
                                                             NSString *dateString                = [dateFormatter stringFromDate:(NSDate *)[planetaryHour objectForKey:@(StartDate)]];
@@ -74,10 +75,7 @@ void (^updatePlanetaryHoursTable)(__weak WKInterfaceTable *) = ^(__weak WKInterf
                                                             
                                                             if (startTimeInterval < 0 && endTimeInterval > 0)
                                                             {
-                                                            
-//                                                            if (![dateInterval containsDate:[NSDate date]])
-                                                               [table scrollToRowAtIndex:(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue]];
-                                                            
+                                                                [table scrollToRowAtIndex:(NSInteger)[(NSNumber *)[planetaryHour objectForKey:@(Hour)] integerValue]];
                                                                 [ExtensionDelegate log:@"Planetary Hour Date/Time" entry:[NSString stringWithFormat:@"\tStart:\t\t%f\n\tEnd:\t\t\t%f\n", startTimeInterval, endTimeInterval] status:LogEntryTypeDebug];
                                                             }
                                                         });
